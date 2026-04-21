@@ -1,0 +1,270 @@
+<!--
+  TOASTMASTERS FTH HOMEPAGE TEMPLATE
+  ===================================
+  Replace all {{PLACEHOLDER}} tokens before pasting into FTH.
+
+  Placeholders:
+    {{CLUB_NAME}}         - Full club name e.g. "Enthusiastic Embarkers Club #4039"
+    {{TAGLINE}}           - Club tagline / motto
+    {{INTRO}}             - 2-4 sentence club introduction
+    {{MEETING_DAY}}       - e.g. "Every Monday" or "1st & 3rd Tuesday"
+    {{MEETING_TIME}}      - e.g. "6:00 PM - 8:00 PM"
+    {{MEETING_LOCATION}}  - Address or "Via Zoom" with link
+    {{CONTACT_EMAIL}}     - Contact email address
+    {{LOGO_URL}}          - URL to TI logo (upload via FTH media manager first)
+
+  PASTE INSTRUCTIONS:
+    1. FTH Admin > Site Administration
+    2. Click "Source" button in the Main Heading editor
+    3. Delete existing content, paste this HTML
+    4. Click Save / Close
+-->
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* === FTH Homepage Styles === */
+/* Prefix: fth- avoids conflicts with FTH's own CSS */
+
+* { box-sizing: border-box; }
+
+.fth-wrap {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  max-width: 860px;
+}
+
+/* --- Hero --- */
+.fth-hero {
+  background: linear-gradient(135deg, #004165 0%, #006094 100%);
+  color: #fff;
+  padding: 48px 32px;
+  text-align: center;
+  border-radius: 4px;
+}
+.fth-hero img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.fth-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+}
+.fth-hero .fth-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #F2DF74;
+  margin: 0 0 24px 0;
+}
+.fth-btn {
+  display: inline-block;
+  background: #772432;
+  color: #fff !important;
+  padding: 11px 28px;
+  border-radius: 3px;
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Intro --- */
+.fth-intro {
+  padding: 36px 32px;
+  text-align: center;
+  background: #fff;
+}
+.fth-intro h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #004165;
+  font-size: 1.35rem;
+  margin: 0 0 14px 0;
+}
+.fth-intro p {
+  font-size: 1rem;
+  color: #444;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* --- Meeting Info --- */
+.fth-meeting {
+  background: #f4f5f5;
+  padding: 36px 32px;
+  text-align: center;
+}
+.fth-meeting h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #772432;
+  font-size: 1.3rem;
+  margin: 0 0 20px 0;
+}
+.fth-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.fth-card {
+  background: #fff;
+  border-top: 4px solid #004165;
+  border-radius: 3px;
+  padding: 18px 22px;
+  min-width: 160px;
+  flex: 1 1 160px;
+  max-width: 220px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+.fth-card-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #004165;
+  margin-bottom: 6px;
+}
+.fth-card-value {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* --- Benefits --- */
+.fth-why {
+  padding: 36px 32px;
+  background: #fff;
+}
+.fth-why h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #004165;
+  font-size: 1.3rem;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+.fth-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.fth-benefit {
+  border-left: 4px solid #772432;
+  padding: 10px 14px;
+  flex: 1 1 180px;
+  max-width: 240px;
+  background: #fafafa;
+  font-size: 0.92rem;
+  color: #333;
+}
+
+/* --- Contact / CTA --- */
+.fth-contact {
+  background: #004165;
+  color: #fff;
+  padding: 32px;
+  text-align: center;
+  border-radius: 0 0 4px 4px;
+}
+.fth-contact h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 0 10px 0;
+}
+.fth-contact p {
+  font-size: 0.95rem;
+  margin: 0 0 16px 0;
+}
+.fth-contact a {
+  color: #F2DF74 !important;
+}
+
+/* --- Disclaimer --- */
+.fth-disclaimer {
+  padding: 14px 24px;
+  font-size: 0.72rem;
+  color: #777;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+  line-height: 1.5;
+}
+</style>
+
+<div class="fth-wrap">
+
+  <!-- HERO -->
+  <div class="fth-hero">
+    <img src="{{LOGO_URL}}" alt="Toastmasters International Logo">
+    <h1>{{CLUB_NAME}}</h1>
+    <p class="fth-tagline">{{TAGLINE}}</p>
+    <a href="mailto:{{CONTACT_EMAIL}}" class="fth-btn">Visit Us as a Guest</a>
+  </div>
+
+  <!-- INTRO -->
+  <div class="fth-intro">
+    <h2>Welcome to {{CLUB_NAME}}</h2>
+    <p>{{INTRO}}</p>
+  </div>
+
+  <!-- MEETING INFO -->
+  <div class="fth-meeting">
+    <h2>Join Us at Our Next Meeting</h2>
+    <div class="fth-cards">
+      <div class="fth-card">
+        <div class="fth-card-label">When</div>
+        <div class="fth-card-value">{{MEETING_DAY}}</div>
+      </div>
+      <div class="fth-card">
+        <div class="fth-card-label">Time</div>
+        <div class="fth-card-value">{{MEETING_TIME}}</div>
+      </div>
+      <div class="fth-card">
+        <div class="fth-card-label">Where</div>
+        <div class="fth-card-value">{{MEETING_LOCATION}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY JOIN -->
+  <div class="fth-why">
+    <h2>Why Join {{CLUB_NAME}}?</h2>
+    <div class="fth-benefits">
+      <div class="fth-benefit">Build public speaking confidence in a supportive environment</div>
+      <div class="fth-benefit">Develop leadership skills through structured Pathways programs</div>
+      <div class="fth-benefit">Grow your professional and personal network</div>
+      <div class="fth-benefit">Progress at your own pace -- guests always welcome!</div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="fth-contact">
+    <h2>Ready to Find Your Voice?</h2>
+    <p>Guests are always welcome. Come experience a meeting for free!</p>
+    <a href="mailto:{{CONTACT_EMAIL}}" class="fth-btn">Contact Us</a>
+  </div>
+
+  <!-- REQUIRED DISCLAIMER -->
+  <div class="fth-disclaimer">
+    The information on this website is for the sole use of Toastmasters' members, for Toastmasters
+    business only. It is not to be used for solicitation and distribution of non-Toastmasters
+    material or information.
+  </div>
+
+</div>

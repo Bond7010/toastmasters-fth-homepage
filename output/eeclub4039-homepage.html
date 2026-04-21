@@ -1,0 +1,440 @@
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* === FTH Homepage Styles — Enthusiastic Embarkers #4039 === */
+* { box-sizing: border-box; }
+
+.fth-wrap {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  max-width: 860px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* --- Hero --- */
+.fth-hero {
+  background: linear-gradient(135deg, #004165 0%, #006094 100%);
+  color: #fff;
+  padding: 48px 32px;
+  text-align: center;
+  border-radius: 4px 4px 0 0;
+}
+.fth-hero img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.fth-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+}
+.fth-hero .fth-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #F2DF74;
+  margin: 0 0 24px 0;
+}
+.fth-btn {
+  display: inline-block;
+  background: #772432;
+  color: #fff !important;
+  padding: 11px 28px;
+  border-radius: 3px;
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.fth-btn:hover { background: #5a1b25; }
+
+/* --- Intro --- */
+.fth-intro {
+  padding: 36px 32px;
+  text-align: center;
+  background: #fff;
+}
+.fth-intro h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #004165;
+  font-size: 1.35rem;
+  margin: 0 0 14px 0;
+}
+.fth-intro p {
+  font-size: 1rem;
+  color: #444;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* --- Meeting Info --- */
+.fth-meeting {
+  background: #f4f5f5;
+  padding: 36px 32px;
+  text-align: center;
+}
+.fth-meeting h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #772432;
+  font-size: 1.3rem;
+  margin: 0 0 20px 0;
+}
+.fth-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.fth-card {
+  background: #fff;
+  border-top: 4px solid #004165;
+  border-radius: 3px;
+  padding: 18px 22px;
+  min-width: 160px;
+  flex: 1 1 180px;
+  max-width: 240px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+.fth-card-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #004165;
+  margin-bottom: 6px;
+}
+.fth-card-value {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.fth-card-value a {
+  color: #772432 !important;
+  text-decoration: none;
+}
+.fth-card-value a:hover {
+  text-decoration: underline;
+}
+
+/* --- Hybrid Badge --- */
+.fth-hybrid-badge {
+  display: inline-block;
+  background: #004165;
+  color: #F2DF74;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+/* --- Benefits --- */
+.fth-why {
+  padding: 36px 32px;
+  background: #fff;
+}
+.fth-why h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #004165;
+  font-size: 1.3rem;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+.fth-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.fth-benefit {
+  border-left: 4px solid #772432;
+  padding: 10px 14px;
+  flex: 1 1 180px;
+  max-width: 240px;
+  background: #fafafa;
+  font-size: 0.92rem;
+  color: #333;
+}
+
+/* --- Contact / CTA --- */
+.fth-contact {
+  background: #004165;
+  color: #fff;
+  padding: 36px 32px;
+  text-align: center;
+}
+.fth-contact h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 0 10px 0;
+}
+.fth-contact p {
+  font-size: 0.95rem;
+  margin: 0 0 16px 0;
+  opacity: 0.9;
+}
+.fth-contact a.fth-btn {
+  color: #fff !important;
+}
+
+/* --- Social --- */
+.fth-social {
+  background: #004165;
+  padding: 0 32px 28px 32px;
+  text-align: center;
+}
+.fth-social-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #A9B2B1;
+  margin-bottom: 10px;
+}
+.fth-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #F2DF74 !important;
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0 10px;
+  border: 1px solid rgba(242,223,116,0.4);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+.fth-social-links a:hover {
+  background: rgba(242,223,116,0.1);
+}
+
+/* --- Header Photo --- */
+.fth-photo-header {
+  line-height: 0;
+}
+.fth-photo-header img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* --- Mid Photo --- */
+.fth-photo-mid {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 0;
+  line-height: 0;
+  position: relative;
+}
+.fth-photo-mid img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  opacity: 0.92;
+}
+.fth-photo-mid-caption {
+  line-height: 1.4;
+  background: rgba(0,65,101,0.82);
+  color: #F2DF74;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 8px 16px;
+  letter-spacing: 0.5px;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 540px) {
+  .fth-hero {
+    padding: 32px 16px;
+  }
+  .fth-hero h1 {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+  }
+  .fth-hero .fth-tagline {
+    font-size: 0.95rem;
+  }
+  .fth-intro,
+  .fth-meeting,
+  .fth-why,
+  .fth-contact {
+    padding: 28px 16px;
+  }
+  .fth-social {
+    padding: 0 16px 22px;
+  }
+  .fth-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .fth-benefit {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .fth-social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .fth-social-links a {
+    margin: 0;
+    width: 180px;
+    justify-content: center;
+  }
+  .fth-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+/* --- Disclaimer --- */
+.fth-disclaimer {
+  padding: 14px 24px;
+  font-size: 0.72rem;
+  color: #777;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+  line-height: 1.5;
+}
+</style>
+
+<div class="fth-wrap">
+
+  <!-- HERO -->
+  <div class="fth-hero">
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png"
+         alt="Toastmasters International Logo">
+    <h1>Enthusiastic Embarkers<br>Toastmasters Club #4039</h1>
+    <p class="fth-tagline">"We help you become a BETTER speaker!"</p>
+    <a href="mailto:samelino@gmail.com" class="fth-btn">Visit Us as a Guest</a>
+  </div>
+
+  <!-- HEADER PHOTO -->
+  <div class="fth-photo-header">
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal%20header.png"
+         alt="Enthusiastic Embarkers Toastmasters Club members at a meeting">
+  </div>
+
+  <!-- INTRO -->
+  <div class="fth-intro">
+    <h2>Welcome to Enthusiastic Embarkers!</h2>
+    <p>We are a warm, welcoming Toastmasters club based in Corona, CA — meeting both in-person and
+    online every week. Whether you want to conquer stage fright, sharpen your storytelling, or grow
+    as a leader, our club gives you a safe, supportive space to practice and improve. Guests are
+    always free to attend — come see what we're all about!</p>
+  </div>
+
+  <!-- MEETING INFO -->
+  <div class="fth-meeting">
+    <h2>Join Us at Our Next Meeting</h2>
+    <div class="fth-cards">
+
+      <div class="fth-card">
+        <div class="fth-card-label">When</div>
+        <div class="fth-card-value">Every Monday</div>
+      </div>
+
+      <div class="fth-card">
+        <div class="fth-card-label">Time</div>
+        <div class="fth-card-value">7:00 PM – 8:30 PM PT</div>
+      </div>
+
+      <div class="fth-card">
+        <div class="fth-card-label">In-Person</div>
+        <div class="fth-card-value">
+          <div class="fth-hybrid-badge">Hybrid</div><br>
+          Post Acute<br>
+          2600 S Main St<br>
+          Corona, CA
+        </div>
+      </div>
+
+      <div class="fth-card">
+        <div class="fth-card-label">Zoom / RSVP</div>
+        <div class="fth-card-value">
+          <a href="mailto:samelino@gmail.com">Email Sandra Amelino</a><br>
+          <span style="font-size:0.82rem;color:#666;">samelino@gmail.com</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MID PHOTO -->
+  <div class="fth-photo-mid">
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal%20mid-section.png"
+         alt="Enthusiastic Embarkers club members together">
+    <div class="fth-photo-mid-caption">Our club family — come join us!</div>
+  </div>
+
+  <!-- WHY JOIN -->
+  <div class="fth-why">
+    <h2>Why Join Enthusiastic Embarkers?</h2>
+    <div class="fth-benefits">
+      <div class="fth-benefit">Build public speaking confidence in a supportive, judgment-free environment</div>
+      <div class="fth-benefit">Develop leadership skills through Toastmasters' structured Pathways program</div>
+      <div class="fth-benefit">Attend in-person or virtually — we meet hybrid every week!</div>
+      <div class="fth-benefit">Grow your professional network and make lifelong connections</div>
+    </div>
+  </div>
+
+  <!-- CONTACT / CTA -->
+  <div class="fth-contact">
+    <h2>Ready to Find Your Voice?</h2>
+    <p>Guests are always welcome — attend your first meeting for free!<br>
+    RSVP or ask questions by reaching out to us below.</p>
+    <a href="mailto:samelino@gmail.com" class="fth-btn">Contact Us</a>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="fth-social">
+    <div class="fth-social-label">Follow Us</div>
+    <div class="fth-social-links">
+      <a href="https://www.facebook.com/EEclub4039/" target="_blank" rel="noopener">
+        &#x1F4D8; Facebook
+      </a>
+      <a href="https://www.instagram.com/eeclub4039/" target="_blank" rel="noopener">
+        &#x1F4F7; Instagram
+      </a>
+    </div>
+  </div>
+
+  <!-- REQUIRED DISCLAIMER -->
+  <div class="fth-disclaimer">
+    The information on this website is for the sole use of Toastmasters' members, for Toastmasters
+    business only. It is not to be used for solicitation and distribution of non-Toastmasters
+    material or information.
+  </div>
+
+</div>

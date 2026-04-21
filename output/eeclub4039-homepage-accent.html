@@ -1,0 +1,497 @@
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* === Accent Style — Glassmorphism Dark === */
+/* Inspired by 21st.dev Glassmorphism Trust Hero (easemize) */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ping {
+  0%   { transform: scale(1); opacity: 1; }
+  75%, 100% { transform: scale(1.8); opacity: 0; }
+}
+
+.acc-wrap {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  line-height: 1.6;
+  max-width: 860px;
+  width: 100%;
+  overflow-x: hidden;
+  border-radius: 6px;
+}
+
+/* --- Hero --- */
+.acc-hero {
+  position: relative;
+  padding: 60px 40px 52px;
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,65,101,0.55) 0%, transparent 70%),
+              #0d1117;
+}
+.acc-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(119,36,50,0.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0,97,148,0.22) 0%, transparent 50%);
+  pointer-events: none;
+}
+.acc-hero-inner {
+  position: relative;
+  z-index: 1;
+  animation: fadeSlideUp 0.8s ease-out both;
+}
+.acc-logo {
+  width: 80px;
+  height: auto;
+  margin: 0 auto 20px;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(242,223,116,0.3));
+}
+.acc-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 4px 14px 4px 10px;
+  font-size: 0.72rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #F2DF74;
+  margin-bottom: 20px;
+}
+.acc-status-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+}
+.acc-status-dot::before,
+.acc-status-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #4ade80;
+}
+.acc-status-dot::after {
+  animation: ping 1.4s cubic-bezier(0,0,0.2,1) infinite;
+}
+.acc-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 12px;
+  animation: fadeSlideUp 0.8s 0.1s ease-out both;
+}
+.acc-hero h1 span {
+  background: linear-gradient(90deg, #F2DF74, #f9a825);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.acc-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: rgba(230,237,243,0.7);
+  margin-bottom: 28px;
+  animation: fadeSlideUp 0.8s 0.2s ease-out both;
+}
+.acc-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #772432, #9b2d3f);
+  color: #fff !important;
+  padding: 12px 32px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid rgba(242,223,116,0.25);
+  box-shadow: 0 0 20px rgba(119,36,50,0.4);
+  animation: fadeSlideUp 0.8s 0.3s ease-out both;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.acc-btn:hover {
+  box-shadow: 0 0 32px rgba(119,36,50,0.65);
+  transform: translateY(-1px);
+}
+
+/* --- Header Photo --- */
+.acc-photo-header {
+  line-height: 0;
+}
+.acc-photo-header img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  opacity: 0.85;
+}
+
+/* --- Glass Intro --- */
+.acc-intro {
+  padding: 40px 32px;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  animation: fadeSlideUp 0.8s 0.15s ease-out both;
+}
+.acc-intro h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #F2DF74;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+.acc-intro p {
+  font-size: 1rem;
+  color: rgba(230,237,243,0.75);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* --- Meeting Cards --- */
+.acc-meeting {
+  padding: 40px 32px;
+  text-align: center;
+  background: #0d1117;
+}
+.acc-meeting h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #e6edf3;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+.acc-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.acc-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 20px 22px;
+  flex: 1 1 180px;
+  max-width: 220px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
+  text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.acc-card:hover {
+  border-color: rgba(242,223,116,0.3);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(242,223,116,0.1);
+}
+.acc-card-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #F2DF74;
+  margin-bottom: 8px;
+}
+.acc-card-value {
+  font-size: 0.9rem;
+  color: #e6edf3;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.acc-card-value a {
+  color: #93c5fd !important;
+  text-decoration: none;
+}
+.acc-card-value a:hover { text-decoration: underline; }
+.acc-hybrid-badge {
+  display: inline-block;
+  background: rgba(0,65,101,0.6);
+  color: #F2DF74;
+  border: 1px solid rgba(242,223,116,0.3);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+/* --- Mid Photo --- */
+.acc-photo-mid {
+  line-height: 0;
+  position: relative;
+}
+.acc-photo-mid img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  opacity: 0.8;
+}
+.acc-photo-mid-caption {
+  line-height: 1.4;
+  background: rgba(13,17,23,0.85);
+  color: #F2DF74;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 8px 16px;
+  letter-spacing: 0.5px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* --- Benefits --- */
+.acc-why {
+  padding: 40px 32px;
+  background: rgba(255,255,255,0.02);
+}
+.acc-why h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #e6edf3;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.acc-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.acc-benefit {
+  border-left: 3px solid #F2DF74;
+  padding: 12px 16px;
+  flex: 1 1 180px;
+  max-width: 240px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+  color: rgba(230,237,243,0.8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* --- CTA --- */
+.acc-contact {
+  padding: 40px 32px;
+  text-align: center;
+  background: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(0,65,101,0.4) 0%, transparent 70%),
+              #0d1117;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.acc-contact h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.acc-contact p {
+  font-size: 0.95rem;
+  color: rgba(230,237,243,0.65);
+  margin-bottom: 20px;
+}
+
+/* --- Social --- */
+.acc-social {
+  padding: 0 32px 30px;
+  text-align: center;
+  background: #0d1117;
+}
+.acc-social-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(230,237,243,0.35);
+  margin-bottom: 12px;
+}
+.acc-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #F2DF74 !important;
+  text-decoration: none !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  margin: 0 8px;
+  border: 1px solid rgba(242,223,116,0.25);
+  padding: 7px 16px;
+  border-radius: 20px;
+  background: rgba(242,223,116,0.04);
+  transition: background 0.2s, border-color 0.2s;
+}
+.acc-social-links a:hover {
+  background: rgba(242,223,116,0.1);
+  border-color: rgba(242,223,116,0.5);
+}
+
+/* --- Disclaimer --- */
+.acc-disclaimer {
+  padding: 14px 24px;
+  font-size: 0.7rem;
+  color: rgba(230,237,243,0.3);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: #080d12;
+  line-height: 1.5;
+}
+
+/* --- Mobile --- */
+@media (max-width: 540px) {
+  .acc-hero { padding: 40px 18px 36px; }
+  .acc-hero h1 { font-size: 1.4rem; }
+  .acc-intro, .acc-meeting, .acc-why, .acc-contact { padding: 28px 18px; }
+  .acc-social { padding: 0 18px 24px; }
+  .acc-card { flex: 1 1 100%; max-width: 100%; }
+  .acc-benefit { flex: 1 1 100%; max-width: 100%; }
+  .acc-social-links { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .acc-social-links a { margin: 0; width: 180px; justify-content: center; }
+  .acc-btn { display: block; width: fit-content; margin: 0 auto; }
+}
+</style>
+
+<div class="acc-wrap">
+
+  <!-- HERO -->
+  <div class="acc-hero">
+    <div class="acc-hero-inner">
+      <img class="acc-logo"
+           src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png"
+           alt="Toastmasters International Logo">
+      <div class="acc-status">
+        <span class="acc-status-dot"></span>
+        Meetings every Monday &mdash; Hybrid
+      </div>
+      <h1>Enthusiastic Embarkers<br><span>Toastmasters Club #4039</span></h1>
+      <p class="acc-tagline">"We help you become a BETTER speaker!"</p>
+      <a href="mailto:samelino@gmail.com" class="acc-btn">Visit Us as a Guest</a>
+    </div>
+  </div>
+
+  <!-- HEADER PHOTO -->
+  <div class="acc-photo-header">
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal%20header.png"
+         alt="Enthusiastic Embarkers Toastmasters Club members at a meeting">
+  </div>
+
+  <!-- INTRO -->
+  <div class="acc-intro">
+    <h2>Welcome to Enthusiastic Embarkers!</h2>
+    <p>We are a warm, welcoming Toastmasters club based in Corona, CA — meeting both in-person and
+    online every week. Whether you want to conquer stage fright, sharpen your storytelling, or grow
+    as a leader, our club gives you a safe, supportive space to practice and improve. Guests are
+    always free to attend — come see what we're all about!</p>
+  </div>
+
+  <!-- MEETING INFO -->
+  <div class="acc-meeting">
+    <h2>Join Us at Our Next Meeting</h2>
+    <div class="acc-cards">
+
+      <div class="acc-card">
+        <div class="acc-card-label">When</div>
+        <div class="acc-card-value">Every Monday</div>
+      </div>
+
+      <div class="acc-card">
+        <div class="acc-card-label">Time</div>
+        <div class="acc-card-value">7:00 PM – 8:30 PM PT</div>
+      </div>
+
+      <div class="acc-card">
+        <div class="acc-card-label">In-Person</div>
+        <div class="acc-card-value">
+          <div class="acc-hybrid-badge">Hybrid</div><br>
+          Post Acute<br>
+          2600 S Main St<br>
+          Corona, CA
+        </div>
+      </div>
+
+      <div class="acc-card">
+        <div class="acc-card-label">Zoom / RSVP</div>
+        <div class="acc-card-value">
+          <a href="mailto:samelino@gmail.com">Email Sandra Amelino</a><br>
+          <span style="font-size:0.8rem;color:rgba(230,237,243,0.5);">samelino@gmail.com</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MID PHOTO -->
+  <div class="acc-photo-mid">
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal%20mid-section.png"
+         alt="Enthusiastic Embarkers club members together">
+    <div class="acc-photo-mid-caption">Our club family — come join us!</div>
+  </div>
+
+  <!-- WHY JOIN -->
+  <div class="acc-why">
+    <h2>Why Join Enthusiastic Embarkers?</h2>
+    <div class="acc-benefits">
+      <div class="acc-benefit">Build public speaking confidence in a supportive, judgment-free environment</div>
+      <div class="acc-benefit">Develop leadership skills through Toastmasters' structured Pathways program</div>
+      <div class="acc-benefit">Attend in-person or virtually — we meet hybrid every week!</div>
+      <div class="acc-benefit">Grow your professional network and make lifelong connections</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="acc-contact">
+    <h2>Ready to Find Your Voice?</h2>
+    <p>Guests are always welcome — attend your first meeting for free!<br>
+    RSVP or ask questions by reaching out to us below.</p>
+    <a href="mailto:samelino@gmail.com" class="acc-btn">Contact Us</a>
+  </div>
+
+  <!-- SOCIAL -->
+  <div class="acc-social">
+    <div class="acc-social-label">Follow Us</div>
+    <div class="acc-social-links">
+      <a href="https://www.facebook.com/EEclub4039/" target="_blank" rel="noopener">&#x1F4D8; Facebook</a>
+      <a href="https://www.instagram.com/eeclub4039/" target="_blank" rel="noopener">&#x1F4F7; Instagram</a>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="acc-disclaimer">
+    The information on this website is for the sole use of Toastmasters' members, for Toastmasters
+    business only. It is not to be used for solicitation and distribution of non-Toastmasters
+    material or information.
+  </div>
+
+</div>

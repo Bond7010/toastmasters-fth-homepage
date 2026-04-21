@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420" font-family="Arial, sans-serif">
+  <!-- Classic Style Preview -->
+
+  <!-- Hero: Loyal Blue gradient -->
+  <defs>
+    <linearGradient id="cHero" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#004165"/>
+      <stop offset="100%" style="stop-color:#006094"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="420" fill="#f0f0f0" rx="6"/>
+
+  <!-- Hero section -->
+  <rect x="0" y="0" width="300" height="110" fill="url(#cHero)" rx="6"/>
+  <rect x="0" y="90" width="300" height="20" fill="url(#cHero)"/>
+  <!-- Logo circle placeholder -->
+  <circle cx="150" cy="28" r="14" fill="white" opacity="0.9"/>
+  <text x="150" y="33" text-anchor="middle" fill="#004165" font-size="10" font-weight="bold">TM</text>
+  <!-- Club name -->
+  <text x="150" y="58" text-anchor="middle" fill="white" font-size="9" font-weight="bold" letter-spacing="0.5">ENTHUSIASTIC EMBARKERS</text>
+  <text x="150" y="70" text-anchor="middle" fill="white" font-size="7.5" font-weight="bold" letter-spacing="0.5">TOASTMASTERS CLUB #4039</text>
+  <!-- Tagline -->
+  <text x="150" y="83" text-anchor="middle" fill="#F2DF74" font-size="6.5">"We help you become a BETTER speaker!"</text>
+  <!-- CTA button -->
+  <rect x="100" y="91" width="100" height="16" fill="#772432" rx="2"/>
+  <text x="150" y="103" text-anchor="middle" fill="white" font-size="6.5" font-weight="bold" letter-spacing="0.5">VISIT US AS A GUEST</text>
+
+  <!-- Header photo strip -->
+  <rect x="0" y="110" width="300" height="50" fill="#c8d8e4"/>
+  <text x="150" y="140" text-anchor="middle" fill="#7a9db5" font-size="8">[ Header Photo ]</text>
+
+  <!-- Intro section -->
+  <rect x="0" y="160" width="300" height="55" fill="white"/>
+  <text x="150" y="178" text-anchor="middle" fill="#004165" font-size="8.5" font-weight="bold">Welcome to Enthusiastic Embarkers!</text>
+  <rect x="30" y="184" width="240" height="4" fill="#ddd" rx="2"/>
+  <rect x="40" y="192" width="220" height="4" fill="#ddd" rx="2"/>
+  <rect x="50" y="200" width="200" height="4" fill="#ddd" rx="2"/>
+  <rect x="60" y="208" width="180" height="4" fill="#ddd" rx="2"/>
+
+  <!-- Meeting cards section -->
+  <rect x="0" y="215" width="300" height="80" fill="#f4f5f5"/>
+  <text x="150" y="230" text-anchor="middle" fill="#772432" font-size="8" font-weight="bold">Join Us at Our Next Meeting</text>
+  <!-- 4 cards -->
+  <rect x="10" y="236" width="62" height="50" fill="white" rx="2"/>
+  <rect x="10" y="236" width="62" height="4" fill="#004165" rx="2"/>
+  <text x="41" y="248" text-anchor="middle" fill="#004165" font-size="5.5" font-weight="bold">WHEN</text>
+  <text x="41" y="260" text-anchor="middle" fill="#333" font-size="6">Every</text>
+  <text x="41" y="270" text-anchor="middle" fill="#333" font-size="6">Monday</text>
+
+  <rect x="80" y="236" width="62" height="50" fill="white" rx="2"/>
+  <rect x="80" y="236" width="62" height="4" fill="#004165" rx="2"/>
+  <text x="111" y="248" text-anchor="middle" fill="#004165" font-size="5.5" font-weight="bold">TIME</text>
+  <text x="111" y="260" text-anchor="middle" fill="#333" font-size="6">7:00 PM</text>
+  <text x="111" y="270" text-anchor="middle" fill="#333" font-size="6">8:30 PM PT</text>
+
+  <rect x="150" y="236" width="62" height="50" fill="white" rx="2"/>
+  <rect x="150" y="236" width="62" height="4" fill="#004165" rx="2"/>
+  <text x="181" y="248" text-anchor="middle" fill="#004165" font-size="5.5" font-weight="bold">IN-PERSON</text>
+  <text x="181" y="258" text-anchor="middle" fill="#333" font-size="5.5">Post Acute</text>
+  <text x="181" y="267" text-anchor="middle" fill="#333" font-size="5.5">Corona, CA</text>
+  <text x="181" y="276" text-anchor="middle" fill="#333" font-size="5.5">Hybrid</text>
+
+  <rect x="220" y="236" width="70" height="50" fill="white" rx="2"/>
+  <rect x="220" y="236" width="70" height="4" fill="#004165" rx="2"/>
+  <text x="255" y="248" text-anchor="middle" fill="#004165" font-size="5.5" font-weight="bold">ZOOM/RSVP</text>
+  <text x="255" y="260" text-anchor="middle" fill="#772432" font-size="5.5">Email Sandra</text>
+  <text x="255" y="270" text-anchor="middle" fill="#777" font-size="5">samelino@</text>
+  <text x="255" y="279" text-anchor="middle" fill="#777" font-size="5">gmail.com</text>
+
+  <!-- Mid photo -->
+  <rect x="0" y="295" width="300" height="40" fill="#b0c8d8"/>
+  <text x="150" y="320" text-anchor="middle" fill="#7a9db5" font-size="8">[ Club Photo ]</text>
+
+  <!-- Why join -->
+  <rect x="0" y="335" width="300" height="50" fill="white"/>
+  <text x="150" y="350" text-anchor="middle" fill="#004165" font-size="8" font-weight="bold">Why Join Enthusiastic Embarkers?</text>
+  <rect x="10" y="356" width="130" height="22" fill="#fafafa" rx="1"/>
+  <rect x="10" y="356" width="3" height="22" fill="#772432"/>
+  <rect x="155" y="356" width="135" height="22" fill="#fafafa" rx="1"/>
+  <rect x="155" y="356" width="3" height="22" fill="#772432"/>
+
+  <!-- CTA dark section -->
+  <rect x="0" y="385" width="300" height="35" fill="#004165" rx="0"/>
+  <rect x="0" y="408" width="300" height="12" fill="#004165"/>
+  <text x="150" y="400" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Ready to Find Your Voice?</text>
+  <rect x="105" y="406" width="90" height="12" fill="#772432" rx="2"/>
+  <text x="150" y="416" text-anchor="middle" fill="white" font-size="6" font-weight="bold">CONTACT US</text>
+
+  <!-- Label badge -->
+  <rect x="8" y="8" width="62" height="16" fill="white" rx="8" opacity="0.95"/>
+  <text x="39" y="20" text-anchor="middle" fill="#004165" font-size="7.5" font-weight="bold">A — CLASSIC</text>
+</svg>

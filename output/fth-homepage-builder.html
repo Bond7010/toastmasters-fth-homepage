@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTH Homepage Builder — Toastmasters</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#004165;--blue2:#006094;--maroon:#772432;--gold:#F2DF74;--gray:#f4f5f5;--border:#d0d5dd;--text:#1a1a2e;--muted:#667085;--error:#c0392b;--success:#1a7f4b;--radius:6px}
+body{font-family:'Source Sans 3',Arial,sans-serif;background:#f0f2f5;color:var(--text);min-height:100vh;padding:0 0 60px}
+.top-bar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:18px 24px;display:flex;align-items:center;gap:16px}
+.top-bar img{width:44px;height:auto}
+.top-bar-text h1{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.top-bar-text p{font-size:.8rem;opacity:.75;margin-top:2px}
+.builder-layout{max-width:1080px;margin:28px auto 0;padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:780px){.builder-layout{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
+.card-header{background:var(--blue);color:#fff;padding:12px 20px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+.card-header .icon{font-size:1rem}
+.card-body{padding:20px}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-bottom:6px}
+label .req{color:var(--maroon);margin-left:2px}
+label .opt{color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.72rem;margin-left:4px}
+input[type=text],input[type=email],input[type=url],select,textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);font-family:'Source Sans 3',Arial,sans-serif;font-size:.9rem;color:var(--text);background:#fff;transition:border-color .15s,box-shadow .15s;appearance:none}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,65,101,.12)}
+input.error,select.error,textarea.error{border-color:var(--error);box-shadow:0 0 0 3px rgba(192,57,43,.1)}
+.error-msg{display:none;color:var(--error);font-size:.75rem;margin-top:4px}.error-msg.show{display:block}
+.photo-preview{margin-top:8px;border-radius:4px;overflow:hidden;max-height:120px;display:none}
+.photo-preview img{width:100%;max-height:120px;object-fit:cover;display:block;border-radius:4px;border:1px solid var(--border)}
+.photo-warn{display:none;margin-top:6px;padding:8px 12px;background:#fff8e1;border:1px solid #f9a825;border-radius:4px;font-size:.78rem;color:#7a5800;line-height:1.55}
+textarea{resize:vertical;min-height:80px;line-height:1.5}
+.char-count{text-align:right;font-size:.7rem;color:var(--muted);margin-top:3px}
+.field-row{display:flex;gap:12px}.field-row .field{flex:1;margin-bottom:0}
+@media(max-width:480px){.field-row{flex-direction:column}}
+.loc-toggle{display:flex;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.loc-toggle input[type=radio]{display:none}
+.loc-toggle label{flex:1;text-align:center;padding:8px 4px;cursor:pointer;background:#fff;border:none;border-right:1px solid var(--border);font-family:'Montserrat',sans-serif;font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);transition:background .15s,color .15s;margin:0}
+.loc-toggle label:last-of-type{border-right:none}
+.loc-toggle input[type=radio]:checked+label{background:var(--blue);color:#fff}
+.loc-section{display:none}.loc-section.visible{display:block}
+.hint{font-size:.75rem;color:var(--muted);margin-top:4px;line-height:1.4}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:none;transition:all .15s}
+.btn-primary{background:var(--maroon);color:#fff;width:100%;justify-content:center;padding:13px 20px;font-size:.85rem}
+.btn-primary:hover{background:#5a1b25}
+.btn-secondary{background:var(--gray);color:var(--blue);border:1px solid var(--border)}.btn-secondary:hover{background:#e8eaec}
+.btn-icon{font-size:1rem}
+.btn-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.generate-area{background:var(--blue);border-radius:var(--radius);padding:20px;margin-top:4px}
+.generate-area p{color:rgba(255,255,255,.8);font-size:.85rem;margin-bottom:14px;line-height:1.5}
+.output-wrap{position:relative}
+#outputCode{width:100%;min-height:180px;font-family:'Courier New',monospace;font-size:.75rem;background:#0d1117;color:#e6edf3;border:1px solid #30363d;border-radius:var(--radius);padding:14px;resize:vertical;line-height:1.5}
+#outputCode::placeholder{color:#4a5568}
+.instructions{background:#f0f7ff;border:1px solid #bfd9f0;border-radius:var(--radius);padding:14px 16px;margin-top:14px}
+.instructions h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-bottom:8px}
+.instructions ol{padding-left:18px;font-size:.85rem;color:#2c4a6e;line-height:1.8}
+.preview-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#f8f9fa;border-bottom:1px solid var(--border)}
+.preview-bar span{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.preview-toggle{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--blue);font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;background:none;border:none;padding:0}
+#previewFrame{width:100%;height:600px;border:none;display:block;background:#fff}
+.preview-placeholder{height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;gap:8px}
+.preview-placeholder .big-icon{font-size:2.5rem;opacity:.3}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--success);color:#fff;padding:12px 20px;border-radius:var(--radius);font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(12px);transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.toast.show{opacity:1;transform:translateY(0)}
+.req-note{font-size:.75rem;color:var(--muted);margin-bottom:16px}.req-note span{color:var(--maroon);font-weight:700}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;align-items:center;justify-content:center;padding:16px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:10px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:modalIn .22s ease-out both}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-header{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:18px 24px;border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:space-between}
+.modal-header h2{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:1px}
+.modal-header p{font-size:.8rem;opacity:.8;margin-top:3px}
+.modal-close{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.modal-close:hover{background:rgba(255,255,255,.28)}
+.modal-body{padding:24px}
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:640px){.style-grid{grid-template-columns:1fr}}
+.style-card{border:2px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;background:#fff}
+.style-card:hover{border-color:var(--blue);box-shadow:0 6px 24px rgba(0,65,101,.18);transform:translateY(-2px)}
+.style-card img{width:100%;height:auto;display:block;border-bottom:2px solid var(--border)}
+.style-card-footer{padding:12px 14px}
+.style-card-footer strong{display:block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;color:var(--blue);margin-bottom:3px}
+.style-card-footer span{font-size:.78rem;color:var(--muted);line-height:1.4;display:block;margin-bottom:10px}
+.style-pick-btn{width:100%;padding:8px;border:none;border-radius:4px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:background .15s}
+.style-pick-btn.classic{background:#004165;color:#fff}.style-pick-btn.classic:hover{background:#002d47}
+.style-pick-btn.accent{background:#0d1117;color:#F2DF74}.style-pick-btn.accent:hover{background:#1a2535}
+.style-pick-btn.obsidian{background:#080808;color:#93c5fd}.style-pick-btn.obsidian:hover{background:#111}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png"
+       alt="Toastmasters International">
+  <div class="top-bar-text">
+    <h1>FTH Homepage Builder</h1>
+    <p>Fill in your club details — get ready-to-paste HTML for Free Toast Host</p>
+  </div>
+</div>
+
+<div class="builder-layout">
+  <div>
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="icon">🏛️</span> Club Identity</div>
+      <div class="card-body">
+        <p class="req-note"><span>*</span> Required fields</p>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="clubName">Club Name <span class="req">*</span></label>
+            <input type="text" id="clubName" placeholder="Enthusiastic Embarkers">
+            <div class="error-msg" id="clubName-err">Club name is required.</div>
+          </div>
+          <div class="field" style="max-width:120px">
+            <label for="clubNum">Club # <span class="req">*</span></label>
+            <input type="text" id="clubNum" placeholder="4039">
+            <div class="error-msg" id="clubNum-err">Required.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tagline">Tagline <span class="opt">(optional)</span></label>
+          <input type="text" id="tagline" placeholder="We help you become a BETTER speaker!" maxlength="120">
+          <div class="hint">Leave blank to omit.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="icon">📅</span> Meeting Details</div>
+      <div class="card-body">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="meetDay">Day <span class="req">*</span></label>
+            <input type="text" id="meetDay" list="dayList" placeholder="Every Monday">
+            <datalist id="dayList">
+              <option value="Every Monday">
+              <option value="Every Tuesday">
+              <option value="Every Wednesday">
+              <option value="Every Thursday">
+              <option value="Every Friday">
+              <option value="1st &amp; 3rd Tuesday">
+              <option value="2nd &amp; 4th Wednesday">
+            </datalist>
+            <div class="error-msg" id="meetDay-err">Meeting day is required.</div>
+          </div>
+          <div class="field">
+            <label for="meetTime">Time <span class="req">*</span></label>
+            <input type="text" id="meetTime" placeholder="7:00 PM – 8:30 PM PT">
+            <div class="error-msg" id="meetTime-err">Meeting time is required.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Location Type <span class="req">*</span></label>
+          <div class="loc-toggle">
+            <input type="radio" name="locType" id="locInPerson" value="inperson">
+            <label for="locInPerson">In-Person</label>
+            <input type="radio" name="locType" id="locZoom" value="zoom" checked>
+            <label for="locZoom">Zoom Only</label>
+            <input type="radio" name="locType" id="locHybrid" value="hybrid">
+            <label for="locHybrid">Hybrid</label>
+          </div>
+
+          <div class="loc-section" id="sec-inperson">
+            <div class="field">
+              <label for="venueName">Venue / Building</label>
+              <input type="text" id="venueName" placeholder="Post Acute">
+            </div>
+            <div class="field">
+              <label for="venueAddr">Street Address</label>
+              <input type="text" id="venueAddr" placeholder="2600 S Main St">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="venueCity">City, State</label>
+                <input type="text" id="venueCity" placeholder="Corona, CA">
+              </div>
+            </div>
+          </div>
+
+          <div class="loc-section visible" id="sec-zoom">
+            <div class="field">
+              <label for="rsvpName">RSVP Contact Name <span class="req">*</span></label>
+              <input type="text" id="rsvpName" placeholder="Sandy Amelino">
+              <div class="error-msg" id="rsvpName-err">RSVP contact name is required for Zoom meetings.</div>
+            </div>
+            <div class="field">
+              <label for="rsvpEmail">RSVP Contact Email <span class="req">*</span></label>
+              <input type="email" id="rsvpEmail" placeholder="contact@example.com">
+              <div class="error-msg" id="rsvpEmail-err">A valid email is required.</div>
+            </div>
+          </div>
+
+          <div class="loc-section" id="sec-hybrid">
+            <div class="field">
+              <label for="hvenueName">Venue / Building</label>
+              <input type="text" id="hvenueName" placeholder="Post Acute">
+            </div>
+            <div class="field">
+              <label for="hvenueAddr">Street Address</label>
+              <input type="text" id="hvenueAddr" placeholder="2600 S Main St">
+            </div>
+            <div class="field">
+              <label for="hvenueCity">City, State</label>
+              <input type="text" id="hvenueCity" placeholder="Corona, CA">
+            </div>
+            <div class="field">
+              <label for="hrsvpName">RSVP Contact Name (for Zoom link)</label>
+              <input type="text" id="hrsvpName" placeholder="Sandy Amelino">
+            </div>
+            <div class="field">
+              <label for="hrsvpEmail">RSVP Contact Email</label>
+              <input type="email" id="hrsvpEmail" placeholder="contact@example.com">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="icon">✍️</span> About the Club</div>
+      <div class="card-body">
+        <div class="field">
+          <label for="contactEmail">Primary Contact Email <span class="req">*</span></label>
+          <input type="email" id="contactEmail" placeholder="club@example.com">
+          <div class="hint">Used for the "Visit Us as a Guest" and "Contact Us" buttons.</div>
+          <div class="error-msg" id="contactEmail-err">A valid contact email is required.</div>
+        </div>
+        <div class="field">
+          <label for="clubIntro">Club Introduction <span class="opt">(optional)</span></label>
+          <textarea id="clubIntro" maxlength="600"
+            placeholder="Leave blank for the default. Or write 2–4 sentences about your club..."></textarea>
+          <div class="char-count"><span id="introCount">0</span> / 600</div>
+          <div class="hint">Leave blank to auto-generate based on location type.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="icon">📣</span> Social Media <span style="font-weight:400;opacity:0.7;margin-left:6px;text-transform:none;letter-spacing:0">(all optional)</span></div>
+      <div class="card-body">
+        <div class="field">
+          <label for="fbUrl">Facebook URL</label>
+          <input type="url" id="fbUrl" placeholder="https://www.facebook.com/yourclub">
+        </div>
+        <div class="field">
+          <label for="igUrl">Instagram URL</label>
+          <input type="url" id="igUrl" placeholder="https://www.instagram.com/yourclub">
+        </div>
+        <div class="hint">Leave blank to omit social links from the page.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="icon">📸</span> Club Photos</div>
+      <div class="card-body">
+
+        <div class="field">
+          <label for="headerPhotoUrl">Header Photo URL <span style="font-weight:400;opacity:0.65;margin-left:4px">(optional)</span></label>
+          <input type="url" id="headerPhotoUrl"
+                 placeholder="https://i.imgur.com/... or drive.google.com/..."
+                 oninput="previewPhoto('headerPhotoUrl','headerPreview','headerWarn')">
+          <div class="photo-warn" id="headerWarn">⚠️ Google Photos links can't be embedded. Use a <strong>Google Drive</strong> share link instead — it auto-converts!</div>
+          <div class="photo-preview" id="headerPreview"><img id="headerPreviewImg" src="" alt="Header preview"></div>
+          <div class="hint">Your club's banner / group photo. Leave blank to use the default universal Toastmasters photo. To use your own: upload to <strong>Imgur</strong> (free, no login) or <strong>Google Drive</strong> (share → "Anyone with the link") and paste the URL.</div>
+        </div>
+
+        <div class="field" style="margin-top:18px">
+          <label for="midPhotoUrl">Mid-Section Photo URL <span style="font-weight:400;opacity:0.65;margin-left:4px">(optional)</span></label>
+          <input type="url" id="midPhotoUrl"
+                 placeholder="Leave blank to use the default universal club photo"
+                 oninput="previewPhoto('midPhotoUrl','midPreview','midWarn')">
+          <div class="photo-warn" id="midWarn">⚠️ Google Photos links can't be embedded. Use a <strong>Google Drive</strong> share link instead — it auto-converts!</div>
+          <div class="photo-preview" id="midPreview"><img id="midPreviewImg" src="" alt="Mid-section preview"></div>
+          <div class="hint">Leave blank for the default community photo.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="generate-area">
+      <p>Fill in your club details above, then click to choose a style and generate your code.</p>
+      <button class="btn btn-primary" onclick="showStylePicker()">
+        <span class="btn-icon">⚡</span> Get Your FTH Homepage Code
+      </button>
+    </div>
+
+  </div>
+
+  <div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="icon">📋</span> Your Homepage Code</div>
+      <div class="card-body">
+        <div class="output-wrap">
+          <textarea id="outputCode" readonly
+            placeholder="Generated HTML appears here — ready to copy into FTH."></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="copyBtn" onclick="copyCode()" disabled>
+            <span class="btn-icon">📋</span> Copy Code
+          </button>
+          <button class="btn btn-secondary" id="dlBtn" onclick="downloadHTML()" disabled>
+            <span class="btn-icon">⬇️</span> Download .html
+          </button>
+          <button class="btn btn-secondary" onclick="resetForm()">
+            <span class="btn-icon">🔄</span> Reset Form
+          </button>
+        </div>
+
+        <div class="instructions" id="pasteInstructions" style="display:none">
+          <h4>📌 How to paste into FTH</h4>
+          <ol>
+            <li>Log in to your <strong>FTH admin panel</strong></li>
+            <li>Go to <strong>Homepage</strong></li>
+            <li>Click the <strong>Source</strong> button in the Main Heading editor</li>
+            <li>Delete existing content, paste the code above <em>(backup the previous code first if you want to keep it!)</em></li>
+            <li>Click <strong>Save / Close</strong></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-bar">
+        <span>Live Preview</span>
+        <button class="preview-toggle" onclick="togglePreview()" id="previewToggleBtn">
+          ▼ Show Preview
+        </button>
+      </div>
+      <div id="previewContainer">
+        <div class="preview-placeholder" id="previewPlaceholder">
+          <div class="big-icon">🖥️</div>
+          <span>Generate your code to see a live preview</span>
+        </div>
+        <iframe id="previewFrame" style="display:none" title="Homepage Preview"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="styleModal" onclick="closeModalOnBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h2>Choose Your Homepage Style</h2>
+        <p>Pick a style — code generates instantly.</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()" title="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="style-grid">
+
+        <div class="style-card" onclick="pickStyle('classic')">
+          <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/previews/preview-classic.svg"
+               alt="Classic style preview">
+          <div class="style-card-footer">
+            <strong>A — Classic</strong>
+            <span>White background · Loyal Blue + True Maroon · Professional &amp; clean</span>
+            <button class="style-pick-btn classic">Select Classic</button>
+          </div>
+        </div>
+
+        <div class="style-card" onclick="pickStyle('accent')">
+          <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/previews/preview-accent.svg"
+               alt="Accent style preview">
+          <div class="style-card-footer">
+            <strong>B — Accent</strong>
+            <span>Dark glass · Gold highlights · Frosted cards · Fade animations</span>
+            <button class="style-pick-btn accent">Select Accent</button>
+          </div>
+        </div>
+
+        <div class="style-card" onclick="pickStyle('obsidian')">
+          <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/previews/preview-obsidian.svg"
+               alt="Obsidian style preview">
+          <div class="style-card-footer">
+            <strong>C — Obsidian</strong>
+            <span>Deep black · Grid glow hero · Gradient borders · Shimmer CTA</span>
+            <button class="style-pick-btn obsidian">Select Obsidian</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ Copied to clipboard!</div>
+
+<script>
+document.querySelectorAll('input[name="locType"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.querySelectorAll('.loc-section').forEach(s => s.classList.remove('visible'));
+    const val = document.querySelector('input[name="locType"]:checked').value;
+    if (val === 'inperson') document.getElementById('sec-inperson').classList.add('visible');
+    if (val === 'zoom')     document.getElementById('sec-zoom').classList.add('visible');
+    if (val === 'hybrid') {
+      document.getElementById('sec-hybrid').classList.add('visible');
+    }
+  });
+});
+
+document.getElementById('clubIntro').addEventListener('input', function() {
+  document.getElementById('introCount').textContent = this.value.length;
+});
+
+function clearErrors() {
+  document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.error').forEach(e => e.classList.remove('error'));
+}
+function showError(fieldId, msgId) {
+  const field = document.getElementById(fieldId);
+  const msg   = document.getElementById(msgId);
+  if (field) field.classList.add('error');
+  if (msg)   msg.classList.add('show');
+  if (field) field.focus();
+}
+function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+function resolvePhotoUrl(url) {
+  if (!url) return '';
+  url = url.trim();
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_\-]+)/);
+  if (driveMatch) {
+    return `https://drive.google.com/thumbnail?id=${driveMatch[1]}&sz=w1200`;
+  }
+  return url;
+}
+function isGooglePhotosLink(url) {
+  return /photos\.app\.goo\.gl|photos\.google\.com/.test(url);
+}
+function previewPhoto(inputId, previewDivId, warnId) {
+  const raw = (document.getElementById(inputId)?.value || '').trim();
+  const previewDiv = document.getElementById(previewDivId);
+  const warn       = document.getElementById(warnId);
+  if (warn) warn.style.display = (raw && isGooglePhotosLink(raw)) ? 'block' : 'none';
+  if (!raw) { if (previewDiv) previewDiv.style.display = 'none'; return; }
+  const resolved = resolvePhotoUrl(raw);
+  const img = previewDiv?.querySelector('img');
+  if (img && previewDiv) {
+    img.onload  = () => { previewDiv.style.display = 'block'; };
+    img.onerror = () => { previewDiv.style.display = 'none';  };
+    img.src = resolved;
+  }
+}
+
+function validate() {
+  clearErrors();
+  let ok = true;
+  const locType = document.querySelector('input[name="locType"]:checked').value;
+
+  if (!v('clubName'))         { showError('clubName','clubName-err');             ok = false; }
+  if (!v('clubNum'))          { showError('clubNum','clubNum-err');               ok = false; }
+  if (!v('meetDay'))          { showError('meetDay','meetDay-err');               ok = false; }
+  if (!v('meetTime'))         { showError('meetTime','meetTime-err');             ok = false; }
+
+  const ce = v('contactEmail');
+  if (!ce || !isValidEmail(ce)) { showError('contactEmail','contactEmail-err'); ok = false; }
+
+  if (locType === 'zoom') {
+    if (!v('rsvpName'))  { showError('rsvpName','rsvpName-err');   ok = false; }
+    const re = v('rsvpEmail');
+    if (!re || !isValidEmail(re)) { showError('rsvpEmail','rsvpEmail-err'); ok = false; }
+  }
+
+  return ok;
+}
+function v(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+function buildDefaultIntro(clubName, locType, city) {
+  const name = clubName || 'our club';
+  if (locType === 'zoom') {
+    return `We are a friendly, inclusive Toastmasters club that meets online every week — so you can join us from anywhere. Whether you are a first-time speaker or a seasoned communicator, ${name} is the place to grow your voice, sharpen your leadership skills, and connect with a supportive community. Guests are always welcome — come experience a meeting for free!`;
+  }
+  const loc = city ? ` based in ${city}` : '';
+  return `We are a warm, welcoming Toastmasters club${loc} — meeting ${locType === 'hybrid' ? 'both in-person and online' : 'in person'} every week. Whether you want to conquer stage fright, sharpen your storytelling, or grow as a leader, our club gives you a safe, supportive space to practice and improve. Guests are always free to attend — come see what we're all about!`;
+}
+
+function openModal() {
+  document.getElementById('styleModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('styleModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('styleModal')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function showStylePicker() {
+  if (!validate()) return;
+  openModal();
+}
+function pickStyle(style) {
+  closeModal();
+  generateHTML(style);
+}
+
+function generateHTML(style) {
+  style = style || 'classic';
+
+  const locType     = document.querySelector('input[name="locType"]:checked').value;
+  const clubName    = v('clubName');
+  const clubNum     = v('clubNum');
+  const tagline     = v('tagline');
+  const meetDay     = v('meetDay');
+  const meetTime    = v('meetTime');
+  const contactEmail = v('contactEmail');
+  const clubIntro   = v('clubIntro');
+  const fbUrl       = v('fbUrl');
+  const igUrl       = v('igUrl');
+  const UNIVERSAL_HEADER = 'https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal-header-photo.jpg';
+  const UNIVERSAL_MID    = 'https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal%20mid-section.png';
+  const headerPhotoUrl   = resolvePhotoUrl(v('headerPhotoUrl')) || UNIVERSAL_HEADER;
+  const midPhotoUrl      = resolvePhotoUrl(v('midPhotoUrl'))    || UNIVERSAL_MID;
+
+  let venueName='', venueAddr='', venueCity='', rsvpName='', rsvpEmail='';
+  if (locType === 'inperson') {
+    venueName = v('venueName'); venueAddr = v('venueAddr'); venueCity = v('venueCity');
+  } else if (locType === 'zoom') {
+    rsvpName = v('rsvpName'); rsvpEmail = v('rsvpEmail');
+  } else {
+    venueName = v('hvenueName'); venueAddr = v('hvenueAddr'); venueCity = v('hvenueCity');
+    rsvpName  = v('hrsvpName');  rsvpEmail = v('hrsvpEmail');
+  }
+
+  const introText = clubIntro || buildDefaultIntro(clubName, locType, venueCity);
+  const fullName  = `${clubName} Toastmasters Club #${clubNum}`;
+
+  let cards = '';
+  cards += card('When', meetDay);
+  cards += card('Time', meetTime);
+
+  if (locType === 'inperson') {
+    const addr = [venueName, venueAddr, venueCity].filter(Boolean).join('<br>');
+    cards += card('Where', addr);
+  } else if (locType === 'zoom') {
+    cards += card('How to Join',
+      `Online via Zoom<br>
+       <a href="mailto:${rsvpEmail}">RSVP ${escHtml(rsvpName)}</a><br>
+       <span style="font-size:0.82rem;color:#666;">${escHtml(rsvpEmail)}</span>`
+    );
+  } else {
+    const addr = [venueName, venueAddr, venueCity].filter(Boolean).join('<br>');
+    cards += cardHybrid(addr);
+    if (rsvpEmail) {
+      cards += card('Zoom / RSVP',
+        `<a href="mailto:${rsvpEmail}">Email ${escHtml(rsvpName)}</a><br>
+         <span style="font-size:0.82rem;color:#666;">${escHtml(rsvpEmail)}</span>`
+      );
+    }
+  }
+
+  let socialSection = '';
+  if (fbUrl || igUrl) {
+    let links = '';
+    if (fbUrl) links += `\n      <a href="${escHtml(fbUrl)}" target="_blank" rel="noopener">&#x1F4D8; Facebook</a>`;
+    if (igUrl) links += `\n      <a href="${escHtml(igUrl)}" target="_blank" rel="noopener">&#x1F4F7; Instagram</a>`;
+    socialSection = `
+  <div class="fth-social">
+    <div class="fth-social-label">Follow Us</div>
+    <div class="fth-social-links">${links}
+    </div>
+  </div>`;
+  }
+
+  const taglineHTML = tagline
+    ? `\n      <p class="fth-tagline">"${escHtml(tagline)}"</p>` : '';
+
+  const html = `<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+.fth-wrap{font-family:'Source Sans 3',Arial,sans-serif;color:#333;line-height:1.6;max-width:860px;width:100%;overflow-x:hidden}
+.fth-hero{background:linear-gradient(135deg,#004165 0%,#006094 100%);color:#fff;padding:48px 32px;text-align:center;border-radius:4px 4px 0 0}
+.fth-hero img{width:90px;height:auto;margin:0 auto 16px;display:block}
+.fth-hero h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.8rem;text-transform:uppercase;letter-spacing:1px;margin:0 0 10px}
+.fth-hero .fth-tagline{font-family:'Montserrat',sans-serif;font-weight:600;font-size:1rem;color:#F2DF74;margin:0 0 24px}
+.fth-btn{display:inline-block;background:#772432;color:#fff!important;padding:11px 28px;border-radius:3px;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+.fth-btn:hover{background:#5a1b25}
+.fth-photo-header{line-height:0}.fth-photo-header img{width:100%;max-height:320px;object-fit:cover;object-position:center top;display:block}
+.fth-intro{padding:36px 32px;text-align:center;background:#fff}.fth-intro h2{font-family:'Montserrat',sans-serif;font-weight:700;color:#004165;font-size:1.35rem;margin:0 0 14px}.fth-intro p{font-size:1rem;color:#444;max-width:640px;margin:0 auto}
+.fth-meeting{background:#f4f5f5;padding:36px 32px;text-align:center}.fth-meeting h2{font-family:'Montserrat',sans-serif;font-weight:700;color:#772432;font-size:1.3rem;margin:0 0 20px}
+.fth-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.fth-card{background:#fff;border-top:4px solid #004165;border-radius:3px;padding:18px 22px;flex:1 1 180px;max-width:240px;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.fth-card-label{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:#004165;margin-bottom:6px}
+.fth-card-value{font-size:.95rem;color:#333;font-weight:600;line-height:1.4}.fth-card-value a{color:#772432!important;text-decoration:none}
+.fth-hybrid-badge{display:inline-block;background:#004165;color:#F2DF74;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.fth-photo-mid{line-height:0;position:relative}.fth-photo-mid img{width:100%;max-height:280px;object-fit:cover;object-position:center 30%;display:block;opacity:.92}
+.fth-photo-mid-caption{line-height:1.4;background:rgba(0,65,101,.82);color:#F2DF74;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;text-align:center;padding:8px 16px;letter-spacing:.5px}
+.fth-why{padding:36px 32px;background:#fff}.fth-why h2{font-family:'Montserrat',sans-serif;font-weight:700;color:#004165;font-size:1.3rem;margin:0 0 20px;text-align:center}
+.fth-benefits{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.fth-benefit{border-left:4px solid #772432;padding:10px 14px;flex:1 1 180px;max-width:240px;background:#fafafa;font-size:.92rem;color:#333}
+.fth-contact{background:#004165;color:#fff;padding:36px 32px;text-align:center}.fth-contact h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;margin:0 0 10px}.fth-contact p{font-size:.95rem;margin:0 0 16px;opacity:.9}.fth-contact a.fth-btn{color:#fff!important}
+.fth-social{background:#004165;padding:0 32px 28px;text-align:center}.fth-social-label{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#A9B2B1;margin-bottom:10px}
+.fth-social-links a{display:inline-flex;align-items:center;gap:6px;color:#F2DF74!important;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.85rem;margin:0 10px;border:1px solid rgba(242,223,116,.4);padding:6px 14px;border-radius:20px}
+.fth-disclaimer{padding:14px 24px;font-size:.72rem;color:#777;text-align:center;border-top:1px solid #ddd;background:#fafafa;line-height:1.5}
+@media(max-width:540px){.fth-hero{padding:32px 16px}.fth-hero h1{font-size:1.3rem}.fth-intro,.fth-meeting,.fth-why,.fth-contact{padding:28px 16px}.fth-social{padding:0 16px 22px}.fth-card{flex:1 1 100%;max-width:100%}.fth-benefit{flex:1 1 100%;max-width:100%}.fth-social-links{display:flex;flex-direction:column;align-items:center;gap:10px}.fth-social-links a{margin:0;width:180px;justify-content:center}.fth-btn{display:block;width:fit-content;margin:0 auto}}
+</style>
+
+<div class="fth-wrap">
+  <div class="fth-hero">
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png" alt="Toastmasters International Logo">
+    <h1>${escHtml(fullName)}</h1>${taglineHTML}
+    <a href="mailto:${escHtml(contactEmail)}" class="fth-btn">Visit Us as a Guest</a>
+  </div>
+
+  <div class="fth-photo-header">
+    <img src="${escHtml(headerPhotoUrl)}" alt="${escHtml(clubName)} Toastmasters members at a meeting">
+  </div>
+
+  <div class="fth-intro">
+    <h2>Welcome to ${escHtml(clubName)}!</h2>
+    <p>${escHtml(introText)}</p>
+  </div>
+
+  <div class="fth-meeting">
+    <h2>Join Us at Our Next Meeting</h2>
+    <div class="fth-cards">
+${cards}    </div>
+  </div>
+
+  <div class="fth-photo-mid">
+    <img src="${escHtml(midPhotoUrl)}" alt="${escHtml(clubName)} club members together">
+    <div class="fth-photo-mid-caption">Our club family — come join us!</div>
+  </div>
+
+  <div class="fth-why">
+    <h2>Why Join ${escHtml(clubName)} Toastmasters?</h2>
+    <div class="fth-benefits">
+      <div class="fth-benefit">Build public speaking confidence in a supportive, judgment-free environment</div>
+      <div class="fth-benefit">Develop leadership skills through Toastmasters' structured Pathways program</div>
+      <div class="fth-benefit">${locType === 'zoom' ? 'Meet online from anywhere — no commute, no dress code, just growth' : locType === 'hybrid' ? 'Attend in-person or virtually — we meet hybrid every week!' : 'Practice in a welcoming in-person environment every week'}</div>
+      <div class="fth-benefit">Grow your professional network and make lasting connections</div>
+    </div>
+  </div>
+
+  <div class="fth-contact">
+    <h2>Ready to Find Your Voice?</h2>
+    <p>Guests are always welcome — attend your first meeting for free!<br>
+    ${locType === 'zoom' ? `Email ${escHtml(rsvpName)} to get the Zoom link and join us this ${meetDay.replace('Every ','')}.` : 'RSVP or ask questions by reaching out to us below.'}</p>
+    <a href="mailto:${escHtml(contactEmail)}" class="fth-btn">Contact Us</a>
+  </div>${socialSection}
+
+  <div class="fth-disclaimer">
+    The information on this website is for the sole use of Toastmasters' members, for Toastmasters business only. It is not to be used for solicitation and distribution of non-Toastmasters material or information.
+  </div>
+</div>`;
+
+  let finalHtml = html;
+  if (style === 'accent')   finalHtml = wrapAccent(html, fullName, clubName, tagline, contactEmail, introText, cards, socialSection, locType, meetDay, rsvpName, rsvpEmail, headerPhotoUrl, midPhotoUrl);
+  if (style === 'obsidian') finalHtml = wrapObsidian(html, fullName, clubName, tagline, contactEmail, introText, cards, socialSection, locType, meetDay, rsvpName, rsvpEmail, headerPhotoUrl, midPhotoUrl);
+
+  document.getElementById('outputCode').value = finalHtml;
+  document.getElementById('copyBtn').disabled = false;
+  document.getElementById('dlBtn').disabled = false;
+  document.getElementById('pasteInstructions').style.display = 'block';
+  updatePreview(finalHtml);
+  showToast(`✅ ${style.charAt(0).toUpperCase()+style.slice(1)} style generated!`);
+}
+
+function wrapAccent(_, fullName, clubName, tagline, contactEmail, introText, cards, socialSection, locType, meetDay, rsvpName, rsvpEmail, headerPhotoUrl, midPhotoUrl) {
+  const taglineHTML = tagline ? `\n      <p class="acc-tagline">"${escHtml(tagline)}"</p>` : '';
+  const acCards = cards.replace(/fth-card/g,'acc-card').replace(/fth-hybrid-badge/g,'acc-hybrid-badge').replace(/fth-card-label/g,'acc-card-label').replace(/fth-card-value/g,'acc-card-value');
+  const acSocial = socialSection.replace(/fth-social/g,'acc-social').replace(/fth-social-label/g,'acc-social-label').replace(/fth-social-links/g,'acc-social-links');
+  const zoomCTA = locType==='zoom' ? `Email ${escHtml(rsvpName)} to get the Zoom link and join us this ${meetDay.replace('Every ','')}.` : 'RSVP or ask questions by reaching out to us below.';
+  const statusLabel = locType==='zoom' ? 'Online via Zoom' : locType==='hybrid' ? 'Hybrid — In-Person &amp; Zoom' : 'In-Person Meetings';
+
+  return `<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* === Accent Style — ${escHtml(fullName)} === */
+*{box-sizing:border-box;margin:0;padding:0}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ping{0%{transform:scale(1);opacity:1}75%,100%{transform:scale(1.8);opacity:0}}
+.acc-wrap{font-family:'Source Sans 3',Arial,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6;max-width:860px;width:100%;overflow-x:hidden;border-radius:6px}
+.acc-hero{position:relative;padding:60px 40px 52px;text-align:center;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,65,101,.55) 0%,transparent 70%),#0d1117}
+.acc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(119,36,50,.18) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(0,97,148,.22) 0%,transparent 50%);pointer-events:none}
+.acc-hero-inner{position:relative;z-index:1;animation:fadeSlideUp .8s ease-out both}
+.acc-logo{width:80px;height:auto;margin:0 auto 20px;display:block;filter:drop-shadow(0 0 12px rgba(242,223,116,.3))}
+.acc-status{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 14px 4px 10px;font-size:.72rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#F2DF74;margin-bottom:20px}
+.acc-status-dot{position:relative;width:8px;height:8px}
+.acc-status-dot::before,.acc-status-dot::after{content:'';position:absolute;inset:0;border-radius:50%;background:#4ade80}
+.acc-status-dot::after{animation:ping 1.4s cubic-bezier(0,0,.2,1) infinite}
+.acc-hero h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2rem;text-transform:uppercase;letter-spacing:1.5px;line-height:1.1;color:#fff;margin:0 0 12px;animation:fadeSlideUp .8s .1s ease-out both}
+.acc-hero h1 span{background:linear-gradient(90deg,#F2DF74,#f9a825);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.acc-tagline{font-family:'Montserrat',sans-serif;font-weight:600;font-size:1rem;color:rgba(230,237,243,.7);margin:0 0 24px;animation:fadeSlideUp .8s .2s ease-out both}
+.acc-btn{display:inline-block;background:linear-gradient(135deg,#772432,#9b2d3f);color:#fff!important;padding:12px 32px;border-radius:4px;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:1.5px;border:1px solid rgba(242,223,116,.25);box-shadow:0 0 20px rgba(119,36,50,.4);animation:fadeSlideUp .8s .3s ease-out both;transition:box-shadow .2s,transform .2s}
+.acc-btn:hover{box-shadow:0 0 32px rgba(119,36,50,.65);transform:translateY(-1px)}
+.acc-photo-header{line-height:0}.acc-photo-header img{width:100%;max-height:300px;object-fit:cover;object-position:center top;display:block;opacity:.85}
+.acc-intro{padding:40px 32px;text-align:center;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.07)}
+.acc-intro h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.25rem;color:#F2DF74;margin-bottom:14px}
+.acc-intro p{font-size:1rem;color:rgba(230,237,243,.75);max-width:620px;margin:0 auto}
+.acc-meeting{padding:40px 32px;text-align:center;background:#0d1117}
+.acc-meeting h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;color:#e6edf3;margin-bottom:24px}
+.acc-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.acc-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:20px 22px;flex:1 1 180px;max-width:260px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);text-align:left;transition:border-color .2s,box-shadow .2s}
+.acc-card:hover{border-color:rgba(242,223,116,.3);box-shadow:0 4px 32px rgba(0,0,0,.4),0 0 0 1px rgba(242,223,116,.1)}
+.acc-card-label{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#F2DF74;margin-bottom:8px}
+.acc-card-value{font-size:.9rem;color:#e6edf3;font-weight:600;line-height:1.5}
+.acc-card-value a{color:#93c5fd!important;text-decoration:none}.acc-card-value a:hover{text-decoration:underline}
+.acc-hybrid-badge{display:inline-block;background:rgba(0,65,101,.6);color:#F2DF74;border:1px solid rgba(242,223,116,.3);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.acc-photo-mid{line-height:0;position:relative}.acc-photo-mid img{width:100%;max-height:260px;object-fit:cover;object-position:center 30%;display:block;opacity:.8}
+.acc-photo-mid-caption{line-height:1.4;background:rgba(13,17,23,.85);color:#F2DF74;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.78rem;text-align:center;padding:8px 16px;letter-spacing:.5px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.acc-why{padding:40px 32px;background:rgba(255,255,255,.02)}
+.acc-why h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;color:#e6edf3;margin-bottom:20px;text-align:center}
+.acc-benefits{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.acc-benefit{border-left:3px solid #F2DF74;padding:12px 16px;flex:1 1 180px;max-width:240px;background:rgba(255,255,255,.04);border-radius:0 6px 6px 0;font-size:.9rem;color:rgba(230,237,243,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.acc-contact{padding:40px 32px;text-align:center;background:radial-gradient(ellipse 70% 100% at 50% 100%,rgba(0,65,101,.4) 0%,transparent 70%),#0d1117;border-top:1px solid rgba(255,255,255,.07)}
+.acc-contact h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:10px}
+.acc-contact p{font-size:.95rem;color:rgba(230,237,243,.65);margin-bottom:20px}
+.acc-social{background:#0d1117;padding:0 32px 28px;text-align:center}
+.acc-social-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(230,237,243,.35);margin-bottom:12px}
+.acc-social-links a{display:inline-flex;align-items:center;gap:6px;color:#F2DF74!important;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;margin:0 8px;border:1px solid rgba(242,223,116,.25);padding:7px 16px;border-radius:20px;background:rgba(242,223,116,.04)}
+.acc-disclaimer{padding:14px 24px;font-size:.7rem;color:rgba(230,237,243,.3);text-align:center;border-top:1px solid rgba(255,255,255,.06);background:#080d12;line-height:1.5}
+@media(max-width:540px){.acc-hero{padding:40px 18px 36px}.acc-hero h1{font-size:1.4rem}.acc-intro,.acc-meeting,.acc-why,.acc-contact{padding:28px 18px}.acc-social{padding:0 18px 24px}.acc-card{flex:1 1 100%;max-width:100%}.acc-benefit{flex:1 1 100%;max-width:100%}.acc-social-links{display:flex;flex-direction:column;align-items:center;gap:10px}.acc-social-links a{margin:0;width:180px;justify-content:center}.acc-btn{display:block;width:fit-content;margin:0 auto}}
+</style>
+<div class="acc-wrap">
+  <div class="acc-hero"><div class="acc-hero-inner">
+    <img class="acc-logo" src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png" alt="Toastmasters International Logo">
+    <div class="acc-status"><span class="acc-status-dot"></span> Meetings ${escHtml(meetDay)} &mdash; ${statusLabel}</div>
+    <h1>${escHtml(clubName)}<br><span>${escHtml(fullName.replace(clubName,'').trim())}</span></h1>${taglineHTML}
+    <a href="mailto:${escHtml(contactEmail)}" class="acc-btn">Visit Us as a Guest</a>
+  </div></div>
+  <div class="acc-photo-header"><img src="${escHtml(headerPhotoUrl)}" alt="${escHtml(clubName)} Toastmasters members at a meeting"></div>
+  <div class="acc-intro"><h2>Welcome to ${escHtml(clubName)}!</h2><p>${escHtml(introText)}</p></div>
+  <div class="acc-meeting"><h2>Join Us at Our Next Meeting</h2><div class="acc-cards">${acCards}</div></div>
+  <div class="acc-photo-mid"><img src="${escHtml(midPhotoUrl)}" alt="${escHtml(clubName)} club members"><div class="acc-photo-mid-caption">Our club family — come join us!</div></div>
+  <div class="acc-why"><h2>Why Join ${escHtml(clubName)} Toastmasters?</h2><div class="acc-benefits">
+    <div class="acc-benefit">Build public speaking confidence in a supportive, judgment-free environment</div>
+    <div class="acc-benefit">Develop leadership skills through Toastmasters' structured Pathways program</div>
+    <div class="acc-benefit">${locType==='zoom'?'Meet online from anywhere — no commute, no dress code, just growth':locType==='hybrid'?'Attend in-person or virtually — we meet hybrid every week!':'Practice in a welcoming in-person environment every week'}</div>
+    <div class="acc-benefit">Grow your professional network and make lasting connections</div>
+  </div></div>
+  <div class="acc-contact"><h2>Ready to Find Your Voice?</h2><p>Guests are always welcome — attend your first meeting for free!<br>${zoomCTA}</p><a href="mailto:${escHtml(contactEmail)}" class="acc-btn">Contact Us</a></div>${acSocial}
+  <div class="acc-disclaimer">The information on this website is for the sole use of Toastmasters' members, for Toastmasters business only. It is not to be used for solicitation and distribution of non-Toastmasters material or information.</div>
+</div>`;
+}
+
+function wrapObsidian(_, fullName, clubName, tagline, contactEmail, introText, cards, socialSection, locType, meetDay, rsvpName, rsvpEmail, headerPhotoUrl, midPhotoUrl) {
+  const taglineHTML = tagline ? `\n      <p class="obs-tagline">"${escHtml(tagline)}"</p>` : '';
+  const obCards = cards.replace(/fth-card(?!-)/g,'obs-card-outer"><div class="obs-card').replace(/fth-card-label/g,'obs-card-label').replace(/fth-card-value/g,'obs-card-value').replace(/fth-hybrid-badge/g,'obs-hybrid-badge').replace(/<\/div>\n      <\/div>/g,'</div>\n      </div></div>');
+  const obSocial = socialSection.replace(/fth-social(?!-)/g,'obs-social').replace(/fth-social-label/g,'obs-social-label').replace(/fth-social-links/g,'obs-social-links');
+  const zoomCTA = locType==='zoom' ? `Email ${escHtml(rsvpName)} to get the Zoom link and join us this ${meetDay.replace('Every ','')}.` : 'RSVP or ask questions by reaching out to us below.';
+
+  return `<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* === Obsidian Style — ${escHtml(fullName)} === */
+*{box-sizing:border-box;margin:0;padding:0}
+@keyframes shimmer{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.obs-wrap{font-family:'Source Sans 3',Arial,sans-serif;background:#080808;color:#e2e8f0;line-height:1.6;max-width:860px;width:100%;overflow-x:hidden;border-radius:6px}
+.obs-hero{position:relative;padding:64px 40px 56px;text-align:center;overflow:hidden;background:#080808}
+.obs-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,65,101,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(0,65,101,.15) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 80%);mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 80%)}
+.obs-hero::after{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:500px;height:400px;background:radial-gradient(ellipse,rgba(0,65,101,.5) 0%,rgba(119,36,50,.15) 40%,transparent 70%);pointer-events:none;animation:glowPulse 4s ease-in-out infinite}
+.obs-hero-inner{position:relative;z-index:1}
+.obs-logo{width:78px;height:auto;margin:0 auto 22px;display:block;filter:drop-shadow(0 0 16px rgba(0,97,148,.6));animation:fadeUp .9s ease-out both}
+.obs-eyebrow{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:rgba(226,232,240,.5);border:1px solid rgba(226,232,240,.12);padding:4px 14px;border-radius:20px;margin-bottom:22px;animation:fadeUp .9s .05s ease-out both}
+.obs-hero h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2.1rem;text-transform:uppercase;letter-spacing:1px;line-height:1.1;margin-bottom:14px;animation:fadeUp .9s .1s ease-out both}
+.obs-gradient{background:linear-gradient(90deg,#60a5fa 0%,#004165 50%,#93c5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.obs-tagline{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.98rem;color:rgba(226,232,240,.55);margin-bottom:32px;animation:fadeUp .9s .15s ease-out both}
+.obs-btn-wrap{display:inline-block;position:relative;border-radius:5px;padding:2px;animation:fadeUp .9s .2s ease-out both;overflow:hidden}
+.obs-btn-wrap::before{content:'';position:absolute;inset:-50%;background:conic-gradient(from 0deg,transparent 0deg,#004165 60deg,#772432 120deg,#F2DF74 180deg,#772432 240deg,#004165 300deg,transparent 360deg);animation:shimmer 2.5s linear infinite}
+.obs-btn{position:relative;display:inline-block;background:#080808;color:#e2e8f0!important;padding:11px 30px;border-radius:4px;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:1.5px;z-index:1}
+.obs-photo-header{line-height:0;position:relative}.obs-photo-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,transparent,#080808)}.obs-photo-header img{width:100%;max-height:300px;object-fit:cover;object-position:center top;display:block;opacity:.75}
+.obs-intro{padding:44px 36px;text-align:center;background:#080808;border-bottom:1px solid rgba(255,255,255,.05)}
+.obs-intro h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.25rem;background:linear-gradient(90deg,#e2e8f0,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px}
+.obs-intro p{font-size:1rem;color:rgba(226,232,240,.6);max-width:620px;margin:0 auto}
+.obs-meeting{padding:44px 36px;text-align:center;background:#080808}
+.obs-meeting h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;color:#e2e8f0;margin-bottom:24px}
+.obs-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.obs-card-outer{flex:1 1 180px;max-width:220px;background:linear-gradient(135deg,rgba(0,65,101,.6),rgba(119,36,50,.3));border-radius:8px;padding:1px}
+.obs-card{background:#0f0f0f;border-radius:7px;padding:20px 18px;height:100%;text-align:left}
+.obs-card-label{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.63rem;text-transform:uppercase;letter-spacing:1.5px;color:#60a5fa;margin-bottom:8px}
+.obs-card-value{font-size:.9rem;color:#e2e8f0;font-weight:600;line-height:1.5}
+.obs-card-value a{color:#93c5fd!important;text-decoration:none}.obs-card-value a:hover{text-decoration:underline}
+.obs-hybrid-badge{display:inline-block;background:linear-gradient(90deg,rgba(0,65,101,.8),rgba(119,36,50,.6));color:#F2DF74;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.obs-photo-mid{line-height:0;position:relative}.obs-photo-mid img{width:100%;max-height:260px;object-fit:cover;object-position:center 30%;display:block;opacity:.7}
+.obs-photo-mid-caption{line-height:1.4;background:rgba(8,8,8,.88);color:#93c5fd;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.78rem;text-align:center;padding:8px 16px;letter-spacing:.5px}
+.obs-why{padding:44px 36px;background:#080808}
+.obs-why h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;color:#e2e8f0;margin-bottom:20px;text-align:center}
+.obs-benefits{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.obs-benefit{border-left:3px solid #004165;padding:12px 16px;flex:1 1 180px;max-width:240px;background:linear-gradient(135deg,rgba(0,65,101,.1),rgba(119,36,50,.06));border-radius:0 6px 6px 0;font-size:.9rem;color:rgba(226,232,240,.75)}
+.obs-contact{padding:48px 36px;text-align:center;background:radial-gradient(ellipse 80% 120% at 50% 100%,rgba(0,65,101,.25) 0%,transparent 70%),#080808;border-top:1px solid rgba(255,255,255,.05)}
+.obs-contact h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.3rem;background:linear-gradient(90deg,#fff,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+.obs-contact p{font-size:.95rem;color:rgba(226,232,240,.5);margin-bottom:24px}
+.obs-social{padding:0 36px 32px;text-align:center;background:#080808}
+.obs-social-label{font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(226,232,240,.25);margin-bottom:12px}
+.obs-social-links a{display:inline-flex;align-items:center;gap:6px;color:#93c5fd!important;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;margin:0 8px;border:1px solid rgba(96,165,250,.2);padding:7px 16px;border-radius:20px;background:rgba(96,165,250,.04)}
+.obs-disclaimer{padding:14px 24px;font-size:.7rem;color:rgba(226,232,240,.2);text-align:center;border-top:1px solid rgba(255,255,255,.04);background:#040404;line-height:1.5}
+@media(max-width:540px){.obs-hero{padding:44px 18px 38px}.obs-hero h1{font-size:1.45rem}.obs-intro,.obs-meeting,.obs-why,.obs-contact{padding:28px 18px}.obs-social{padding:0 18px 24px}.obs-card-outer{flex:1 1 100%;max-width:100%}.obs-benefit{flex:1 1 100%;max-width:100%}.obs-social-links{display:flex;flex-direction:column;align-items:center;gap:10px}.obs-social-links a{margin:0;width:180px;justify-content:center}}
+</style>
+<div class="obs-wrap">
+  <div class="obs-hero"><div class="obs-hero-inner">
+    <img class="obs-logo" src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png" alt="Toastmasters International Logo">
+    <div class="obs-eyebrow">Toastmasters International &bull; Club #${escHtml(v('clubNum'))}</div>
+    <h1>${escHtml(clubName)}<br><span class="obs-gradient">${escHtml(fullName.replace(clubName,'').trim())}</span></h1>${taglineHTML}
+    <div class="obs-btn-wrap"><a href="mailto:${escHtml(contactEmail)}" class="obs-btn">Visit Us as a Guest</a></div>
+  </div></div>
+  <div class="obs-photo-header"><img src="${escHtml(headerPhotoUrl)}" alt="${escHtml(clubName)} Toastmasters members"></div>
+  <div class="obs-intro"><h2>Welcome to ${escHtml(clubName)}!</h2><p>${escHtml(introText)}</p></div>
+  <div class="obs-meeting"><h2>Join Us at Our Next Meeting</h2><div class="obs-cards">${cards.replace(/class="fth-card"/g,'class="obs-card-outer"><div class="obs-card"').replace(/class="fth-card-label"/g,'class="obs-card-label"').replace(/class="fth-card-value"/g,'class="obs-card-value"').replace(/class="fth-hybrid-badge"/g,'class="obs-hybrid-badge"').replace(/<\/div>\n      <\/div>/g,'</div>\n      </div></div>')}</div></div>
+  <div class="obs-photo-mid"><img src="${escHtml(midPhotoUrl)}" alt="${escHtml(clubName)} club members"><div class="obs-photo-mid-caption">Our club family — come join us!</div></div>
+  <div class="obs-why"><h2>Why Join ${escHtml(clubName)} Toastmasters?</h2><div class="obs-benefits">
+    <div class="obs-benefit">Build public speaking confidence in a supportive, judgment-free environment</div>
+    <div class="obs-benefit">Develop leadership skills through Toastmasters' structured Pathways program</div>
+    <div class="obs-benefit">${locType==='zoom'?'Meet online from anywhere — no commute, no dress code, just growth':locType==='hybrid'?'Attend in-person or virtually — we meet hybrid every week!':'Practice in a welcoming in-person environment every week'}</div>
+    <div class="obs-benefit">Grow your professional network and make lasting connections</div>
+  </div></div>
+  <div class="obs-contact"><h2>Ready to Find Your Voice?</h2><p>Guests are always welcome — attend your first meeting for free!<br>${zoomCTA}</p><div class="obs-btn-wrap"><a href="mailto:${escHtml(contactEmail)}" class="obs-btn">Contact Us</a></div></div>${obSocial}
+  <div class="obs-disclaimer">The information on this website is for the sole use of Toastmasters' members, for Toastmasters business only. It is not to be used for solicitation and distribution of non-Toastmasters material or information.</div>
+</div>`;
+}
+
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function card(label, value) {
+  return `      <div class="fth-card">
+        <div class="fth-card-label">${label}</div>
+        <div class="fth-card-value">${value}</div>
+      </div>\n`;
+}
+function cardHybrid(addr) {
+  return `      <div class="fth-card">
+        <div class="fth-card-label">In-Person</div>
+        <div class="fth-card-value"><div class="fth-hybrid-badge">Hybrid</div><br>${addr}</div>
+      </div>\n`;
+}
+
+let previewVisible = false;
+function updatePreview(html) {
+  const frame = document.getElementById('previewFrame');
+  const placeholder = document.getElementById('previewPlaceholder');
+  frame.style.display = 'block';
+  placeholder.style.display = 'none';
+  frame.srcdoc = `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0">${html}</body></html>`;
+  if (!previewVisible) togglePreview();
+}
+function togglePreview() {
+  previewVisible = !previewVisible;
+  const frame = document.getElementById('previewFrame');
+  const btn   = document.getElementById('previewToggleBtn');
+  frame.style.display = previewVisible ? 'block' : 'none';
+  btn.textContent = previewVisible ? '▲ Hide Preview' : '▼ Show Preview';
+}
+
+function copyCode() {
+  const code = document.getElementById('outputCode').value;
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => showToast('✅ Copied to clipboard!'))
+    .catch(() => {
+      document.getElementById('outputCode').select();
+      document.execCommand('copy');
+      showToast('✅ Copied to clipboard!');
+    });
+}
+
+function downloadHTML() {
+  const code = document.getElementById('outputCode').value;
+  if (!code) return;
+  const clubNum = v('clubNum') || 'club';
+  const name = (v('clubName') || 'homepage').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  const filename = `${name}-${clubNum}-homepage.html`;
+  const blob = new Blob([code], {type: 'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('⬇️ Downloaded!');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function resetForm() {
+  document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea').forEach(el => el.value = '');
+  document.getElementById('locZoom').checked = true;
+  document.querySelectorAll('.loc-section').forEach(s => s.classList.remove('visible'));
+  document.getElementById('sec-zoom').classList.add('visible');
+  document.getElementById('outputCode').value = '';
+  document.getElementById('copyBtn').disabled = true;
+  document.getElementById('dlBtn').disabled = true;
+  document.getElementById('pasteInstructions').style.display = 'none';
+  document.getElementById('previewFrame').style.display = 'none';
+  document.getElementById('previewPlaceholder').style.display = 'flex';
+  document.getElementById('introCount').textContent = '0';
+  clearErrors();
+  if (previewVisible) togglePreview();
+}
+</script>
+
+</body>
+</html>

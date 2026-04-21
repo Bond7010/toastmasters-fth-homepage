@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420" font-family="Arial, sans-serif">
+  <!-- Accent Style Preview — Dark Glassmorphism -->
+
+  <defs>
+    <radialGradient id="aGlow" cx="50%" cy="0%" r="70%">
+      <stop offset="0%" style="stop-color:#004165;stop-opacity:0.55"/>
+      <stop offset="100%" style="stop-color:#0d1117;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="aGlow2" cx="20%" cy="80%" r="50%">
+      <stop offset="0%" style="stop-color:#772432;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#0d1117;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="300" height="420" fill="#0d1117" rx="6"/>
+
+  <!-- Hero glow -->
+  <rect x="0" y="0" width="300" height="120" fill="url(#aGlow)"/>
+  <rect x="0" y="0" width="300" height="120" fill="url(#aGlow2)"/>
+
+  <!-- Logo -->
+  <circle cx="150" cy="24" r="13" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+  <text x="150" y="29" text-anchor="middle" fill="#F2DF74" font-size="9" font-weight="bold">TM</text>
+
+  <!-- Status pill -->
+  <rect x="90" y="40" width="120" height="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" rx="6"/>
+  <circle cx="102" cy="46" r="3" fill="#4ade80"/>
+  <text x="152" y="50" text-anchor="middle" fill="#F2DF74" font-size="5.5" font-weight="bold">MEETINGS EVERY MONDAY</text>
+
+  <!-- Club name with gold gradient text effect -->
+  <text x="150" y="65" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold" letter-spacing="0.5">ENTHUSIASTIC EMBARKERS</text>
+  <text x="150" y="76" text-anchor="middle" fill="#F2DF74" font-size="7.5" font-weight="bold" letter-spacing="0.5">TOASTMASTERS CLUB #4039</text>
+  <text x="150" y="87" text-anchor="middle" fill="rgba(230,237,243,0.6)" font-size="6">"We help you become a BETTER speaker!"</text>
+
+  <!-- CTA button with border glow -->
+  <rect x="100" y="94" width="100" height="16" fill="#772432" rx="2" opacity="0.9"/>
+  <rect x="100" y="94" width="100" height="16" fill="none" stroke="rgba(242,223,116,0.3)" stroke-width="0.5" rx="2"/>
+  <text x="150" y="106" text-anchor="middle" fill="white" font-size="6" font-weight="bold" letter-spacing="0.5">VISIT US AS A GUEST</text>
+
+  <!-- Header photo strip -->
+  <rect x="0" y="113" width="300" height="46" fill="#1a2535" opacity="0.85"/>
+  <text x="150" y="140" text-anchor="middle" fill="#3a5570" font-size="8">[ Header Photo ]</text>
+
+  <!-- Intro: glass card -->
+  <rect x="0" y="159" width="300" height="52" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+  <text x="150" y="176" text-anchor="middle" fill="#F2DF74" font-size="8" font-weight="bold">Welcome to Enthusiastic Embarkers!</text>
+  <rect x="30" y="182" width="240" height="3" fill="rgba(255,255,255,0.12)" rx="1.5"/>
+  <rect x="40" y="189" width="220" height="3" fill="rgba(255,255,255,0.12)" rx="1.5"/>
+  <rect x="50" y="196" width="200" height="3" fill="rgba(255,255,255,0.12)" rx="1.5"/>
+
+  <!-- Meeting cards — glass style -->
+  <rect x="0" y="211" width="300" height="82" fill="#0d1117"/>
+  <text x="150" y="226" text-anchor="middle" fill="#e6edf3" font-size="7.5" font-weight="bold">Join Us at Our Next Meeting</text>
+
+  <!-- Glass cards -->
+  <rect x="8" y="232" width="62" height="52" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" rx="4"/>
+  <text x="39" y="244" text-anchor="middle" fill="#F2DF74" font-size="5" font-weight="bold" letter-spacing="1">WHEN</text>
+  <text x="39" y="256" text-anchor="middle" fill="#e6edf3" font-size="6">Every</text>
+  <text x="39" y="266" text-anchor="middle" fill="#e6edf3" font-size="6">Monday</text>
+
+  <rect x="78" y="232" width="62" height="52" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" rx="4"/>
+  <text x="109" y="244" text-anchor="middle" fill="#F2DF74" font-size="5" font-weight="bold" letter-spacing="1">TIME</text>
+  <text x="109" y="256" text-anchor="middle" fill="#e6edf3" font-size="6">7:00 PM</text>
+  <text x="109" y="266" text-anchor="middle" fill="#e6edf3" font-size="6">8:30 PM PT</text>
+
+  <rect x="148" y="232" width="62" height="52" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" rx="4"/>
+  <text x="179" y="244" text-anchor="middle" fill="#F2DF74" font-size="5" font-weight="bold" letter-spacing="1">IN-PERSON</text>
+  <rect x="155" y="248" width="48" height="10" fill="rgba(0,65,101,0.6)" stroke="rgba(242,223,116,0.3)" stroke-width="0.5" rx="5"/>
+  <text x="179" y="256" text-anchor="middle" fill="#F2DF74" font-size="4.5">HYBRID</text>
+  <text x="179" y="267" text-anchor="middle" fill="#e6edf3" font-size="5.5">Corona, CA</text>
+  <text x="179" y="276" text-anchor="middle" fill="#e6edf3" font-size="5.5">Post Acute</text>
+
+  <rect x="218" y="232" width="74" height="52" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" rx="4"/>
+  <text x="255" y="244" text-anchor="middle" fill="#F2DF74" font-size="5" font-weight="bold" letter-spacing="1">ZOOM/RSVP</text>
+  <text x="255" y="257" text-anchor="middle" fill="#93c5fd" font-size="5.5">Email Sandra</text>
+  <text x="255" y="267" text-anchor="middle" fill="rgba(230,237,243,0.45)" font-size="5">samelino@</text>
+  <text x="255" y="276" text-anchor="middle" fill="rgba(230,237,243,0.45)" font-size="5">gmail.com</text>
+
+  <!-- Mid photo -->
+  <rect x="0" y="293" width="300" height="38" fill="#111c2a" opacity="0.9"/>
+  <text x="150" y="315" text-anchor="middle" fill="#2a4060" font-size="8">[ Club Photo ]</text>
+  <rect x="0" y="325" width="300" height="6" fill="rgba(13,17,23,0.85)"/>
+  <text x="150" y="331" text-anchor="middle" fill="#F2DF74" font-size="5">Our club family — come join us!</text>
+
+  <!-- Why join -->
+  <rect x="0" y="331" width="300" height="46" fill="rgba(255,255,255,0.02)"/>
+  <text x="150" y="346" text-anchor="middle" fill="#e6edf3" font-size="7.5" font-weight="bold">Why Join Enthusiastic Embarkers?</text>
+  <!-- Glass benefit tiles -->
+  <rect x="8" y="350" width="130" height="18" fill="rgba(255,255,255,0.04)" rx="2"/>
+  <rect x="8" y="350" width="3" height="18" fill="#F2DF74" rx="1"/>
+  <rect x="155" y="350" width="137" height="18" fill="rgba(255,255,255,0.04)" rx="2"/>
+  <rect x="155" y="350" width="3" height="18" fill="#F2DF74" rx="1"/>
+  <rect x="8" y="371" width="130" height="0" fill="rgba(255,255,255,0.04)" rx="2"/>
+
+  <!-- CTA -->
+  <rect x="0" y="377" width="300" height="43" fill="rgba(0,65,101,0.15)"/>
+  <rect x="0" y="377" width="300" height="1" fill="rgba(255,255,255,0.07)"/>
+  <text x="150" y="392" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Ready to Find Your Voice?</text>
+  <rect x="100" y="398" width="100" height="14" fill="#772432" rx="2" opacity="0.9"/>
+  <rect x="100" y="398" width="100" height="14" fill="none" stroke="rgba(242,223,116,0.25)" stroke-width="0.5" rx="2"/>
+  <text x="150" y="409" text-anchor="middle" fill="white" font-size="6" font-weight="bold">CONTACT US</text>
+
+  <!-- Disclaimer -->
+  <rect x="0" y="412" width="300" height="8" fill="#080d12"/>
+  <rect x="0" y="412" width="300" height="1" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- Label badge -->
+  <rect x="8" y="8" width="64" height="16" fill="rgba(242,223,116,0.15)" stroke="rgba(242,223,116,0.4)" stroke-width="0.5" rx="8"/>
+  <text x="40" y="20" text-anchor="middle" fill="#F2DF74" font-size="7.5" font-weight="bold">B — ACCENT</text>
+</svg>

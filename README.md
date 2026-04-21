@@ -16,7 +16,18 @@ FTH is the official website platform for all Toastmasters clubs (`clubname.toast
 
 Preview SVGs for each theme are in the [`assets/`](assets/) folder.
 
-## How to Use
+## No Claude Code? Use the Self-Contained Builder
+
+**[`output/fth-homepage-builder.html`](output/fth-homepage-builder.html)** is a standalone web app — no Claude account needed.
+
+1. Open the file in any browser (or copy its source code into any `.html` file on your computer)
+2. Fill in your club's details using the form UI (name, meeting time, location, contact, etc.)
+3. Choose a theme and click **Generate**
+4. Copy the generated HTML from the output box and paste it into FTH
+
+This is the recommended path for Toastmasters members who don't have a Claude Code account.
+
+## How to Use (Claude Code)
 
 Invoke the skill in Claude Code and it will walk you through four steps:
 
@@ -36,12 +47,13 @@ Invoke the skill in Claude Code and it will walk you through four steps:
 
 ## Example Output
 
-| File | Club | Theme |
-|---|---|---|
-| [`output/circlecity5170-homepage-accent.html`](output/circlecity5170-homepage-accent.html) | Circle City Toastmasters #5170 | Accent |
-| [`output/eeclub4039-homepage.html`](output/eeclub4039-homepage.html) | Enthusiastic Embarkers Club #4039 | Classic |
-| [`output/eeclub4039-homepage-accent.html`](output/eeclub4039-homepage-accent.html) | Enthusiastic Embarkers Club #4039 | Accent |
-| [`output/eeclub4039-homepage-obsidian.html`](output/eeclub4039-homepage-obsidian.html) | Enthusiastic Embarkers Club #4039 | Obsidian |
+| File | Description |
+|---|---|
+| [`output/fth-homepage-builder.html`](output/fth-homepage-builder.html) | **Self-contained builder UI** — open in any browser, no Claude needed |
+| [`output/circlecity5170-homepage-accent.html`](output/circlecity5170-homepage-accent.html) | Circle City Toastmasters #5170 — Accent theme |
+| [`output/eeclub4039-homepage.html`](output/eeclub4039-homepage.html) | Enthusiastic Embarkers Club #4039 — Classic theme |
+| [`output/eeclub4039-homepage-accent.html`](output/eeclub4039-homepage-accent.html) | Enthusiastic Embarkers Club #4039 — Accent theme |
+| [`output/eeclub4039-homepage-obsidian.html`](output/eeclub4039-homepage-obsidian.html) | Enthusiastic Embarkers Club #4039 — Obsidian theme |
 
 ## Brand Compliance
 
@@ -64,7 +76,9 @@ toastmasters-fth-homepage/
 │   ├── preview-accent.svg          # Theme preview — Accent
 │   ├── preview-classic.svg         # Theme preview — Classic
 │   └── preview-obsidian.svg        # Theme preview — Obsidian
-├── output/                         # Generated homepages (one per club/theme)
+├── output/
+│   ├── fth-homepage-builder.html   # Self-contained builder UI (no Claude needed)
+│   └── ...                         # Generated homepages (one per club/theme)
 └── references/
     ├── brand.md                    # Toastmasters brand guidelines
     └── fth.md                      # FTH platform constraints & how-to

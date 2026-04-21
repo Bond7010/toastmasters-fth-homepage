@@ -1,17 +1,48 @@
 <!--
-  TOASTMASTERS FTH HOMEPAGE TEMPLATE
-  ===================================
+  TOASTMASTERS FTH HOMEPAGE TEMPLATE — Classic Style
+  =====================================================
   Replace all {{PLACEHOLDER}} tokens before pasting into FTH.
 
   Placeholders:
-    {{CLUB_NAME}}         - Full club name e.g. "Enthusiastic Embarkers Club #4039"
-    {{TAGLINE}}           - Club tagline / motto
+    {{CLUB_NAME}}         - Full club name e.g. "Enthusiastic Embarkers"
+    {{CLUB_FULL_NAME}}    - Full name with club # e.g. "Enthusiastic Embarkers Toastmasters Club #4039"
+    {{TAGLINE}}           - Club tagline / motto (omit the <p class="fth-tagline"> block if no tagline)
     {{INTRO}}             - 2-4 sentence club introduction
     {{MEETING_DAY}}       - e.g. "Every Monday" or "1st & 3rd Tuesday"
     {{MEETING_TIME}}      - e.g. "6:00 PM - 8:00 PM"
-    {{MEETING_LOCATION}}  - Address or "Via Zoom" with link
+    {{MEETING_CARDS}}     - One or more <div class="fth-card"> blocks (see card variants below)
     {{CONTACT_EMAIL}}     - Contact email address
-    {{LOGO_URL}}          - URL to TI logo (upload via FTH media manager first)
+    {{HEADER_PHOTO_URL}}  - Banner photo below hero. Default: universal-header-photo.jpg (GitHub CDN)
+    {{MID_PHOTO_URL}}     - Mid-section photo. Default: universal-mid-section.png (GitHub CDN)
+    {{SOCIAL_SECTION}}    - Social links block, or empty string if no social media provided
+
+  Default universal photo URLs (use when no custom photo is supplied):
+    Header: https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal-header-photo.jpg
+    Mid:    https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/universal%20mid-section.png
+
+  Official TM logo URL (GitHub CDN — no upload needed):
+    https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png
+
+  Meeting card variants:
+    In-Person:
+      <div class="fth-card"><div class="fth-card-label">Where</div><div class="fth-card-value">Venue<br>Address<br>City, State</div></div>
+
+    Zoom:
+      <div class="fth-card"><div class="fth-card-label">How to Join</div><div class="fth-card-value">Online via Zoom<br>
+        <a href="mailto:EMAIL">RSVP Contact Name</a><br>
+        <span style="font-size:0.82rem;color:#666;">EMAIL</span></div></div>
+
+    Hybrid: add a badge inside the Where card:
+      <div class="fth-hybrid-badge">Hybrid</div>
+
+  Social section (omit entirely if no links provided):
+    <div class="fth-social">
+      <div class="fth-social-label">Follow Us</div>
+      <div class="fth-social-links">
+        <a href="FB_URL" target="_blank" rel="noopener">&#x1F4D8; Facebook</a>
+        <a href="IG_URL" target="_blank" rel="noopener">&#x1F4F7; Instagram</a>
+      </div>
+    </div>
 
   PASTE INSTRUCTIONS:
     1. FTH Admin > Site Administration
@@ -23,187 +54,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-/* === FTH Homepage Styles === */
+/* === FTH Homepage Styles — Classic === */
 /* Prefix: fth- avoids conflicts with FTH's own CSS */
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-.fth-wrap {
-  font-family: 'Source Sans 3', Arial, sans-serif;
-  color: #333;
-  line-height: 1.6;
-  max-width: 860px;
-}
+.fth-wrap{font-family:'Source Sans 3',Arial,sans-serif;color:#333;line-height:1.6;max-width:860px;width:100%;overflow-x:hidden}
 
 /* --- Hero --- */
-.fth-hero {
-  background: linear-gradient(135deg, #004165 0%, #006094 100%);
-  color: #fff;
-  padding: 48px 32px;
-  text-align: center;
-  border-radius: 4px;
-}
-.fth-hero img {
-  width: 90px;
-  height: auto;
-  margin-bottom: 16px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.fth-hero h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0 0 10px 0;
-}
-.fth-hero .fth-tagline {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #F2DF74;
-  margin: 0 0 24px 0;
-}
-.fth-btn {
-  display: inline-block;
-  background: #772432;
-  color: #fff !important;
-  padding: 11px 28px;
-  border-radius: 3px;
-  text-decoration: none !important;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+.fth-hero{background:linear-gradient(135deg,#004165 0%,#006094 100%);color:#fff;padding:48px 32px;text-align:center;border-radius:4px 4px 0 0}
+.fth-hero img{width:90px;height:auto;margin:0 auto 16px;display:block}
+.fth-hero h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.8rem;text-transform:uppercase;letter-spacing:1px;margin:0 0 10px}
+.fth-hero .fth-tagline{font-family:'Montserrat',sans-serif;font-weight:600;font-size:1rem;color:#F2DF74;margin:0 0 24px}
+.fth-btn{display:inline-block;background:#772432;color:#fff!important;padding:11px 28px;border-radius:3px;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+.fth-btn:hover{background:#5a1b25}
+
+/* --- Header Photo --- */
+.fth-photo-header{line-height:0}
+.fth-photo-header img{width:100%;max-height:320px;object-fit:cover;object-position:center top;display:block}
 
 /* --- Intro --- */
-.fth-intro {
-  padding: 36px 32px;
-  text-align: center;
-  background: #fff;
-}
-.fth-intro h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: #004165;
-  font-size: 1.35rem;
-  margin: 0 0 14px 0;
-}
-.fth-intro p {
-  font-size: 1rem;
-  color: #444;
-  max-width: 640px;
-  margin: 0 auto;
-}
+.fth-intro{padding:36px 32px;text-align:center;background:#fff}
+.fth-intro h2{font-family:'Montserrat',sans-serif;font-weight:700;color:#004165;font-size:1.35rem;margin:0 0 14px}
+.fth-intro p{font-size:1rem;color:#444;max-width:640px;margin:0 auto}
 
 /* --- Meeting Info --- */
-.fth-meeting {
-  background: #f4f5f5;
-  padding: 36px 32px;
-  text-align: center;
-}
-.fth-meeting h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: #772432;
-  font-size: 1.3rem;
-  margin: 0 0 20px 0;
-}
-.fth-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}
-.fth-card {
-  background: #fff;
-  border-top: 4px solid #004165;
-  border-radius: 3px;
-  padding: 18px 22px;
-  min-width: 160px;
-  flex: 1 1 160px;
-  max-width: 220px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
-}
-.fth-card-label {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #004165;
-  margin-bottom: 6px;
-}
-.fth-card-value {
-  font-size: 0.95rem;
-  color: #333;
-  font-weight: 600;
-}
+.fth-meeting{background:#f4f5f5;padding:36px 32px;text-align:center}
+.fth-meeting h2{font-family:'Montserrat',sans-serif;font-weight:700;color:#772432;font-size:1.3rem;margin:0 0 20px}
+.fth-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.fth-card{background:#fff;border-top:4px solid #004165;border-radius:3px;padding:18px 22px;flex:1 1 180px;max-width:240px;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.fth-card-label{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:#004165;margin-bottom:6px}
+.fth-card-value{font-size:.95rem;color:#333;font-weight:600;line-height:1.4}
+.fth-card-value a{color:#772432!important;text-decoration:none}
+.fth-hybrid-badge{display:inline-block;background:#004165;color:#F2DF74;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+
+/* --- Mid Photo --- */
+.fth-photo-mid{line-height:0;position:relative}
+.fth-photo-mid img{width:100%;max-height:280px;object-fit:cover;object-position:center 30%;display:block;opacity:.92}
+.fth-photo-mid-caption{line-height:1.4;background:rgba(0,65,101,.82);color:#F2DF74;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;text-align:center;padding:8px 16px;letter-spacing:.5px}
 
 /* --- Benefits --- */
-.fth-why {
-  padding: 36px 32px;
-  background: #fff;
-}
-.fth-why h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: #004165;
-  font-size: 1.3rem;
-  margin: 0 0 20px 0;
-  text-align: center;
-}
-.fth-benefits {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-.fth-benefit {
-  border-left: 4px solid #772432;
-  padding: 10px 14px;
-  flex: 1 1 180px;
-  max-width: 240px;
-  background: #fafafa;
-  font-size: 0.92rem;
-  color: #333;
-}
+.fth-why{padding:36px 32px;background:#fff}
+.fth-why h2{font-family:'Montserrat',sans-serif;font-weight:700;color:#004165;font-size:1.3rem;margin:0 0 20px;text-align:center}
+.fth-benefits{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.fth-benefit{border-left:4px solid #772432;padding:10px 14px;flex:1 1 180px;max-width:240px;background:#fafafa;font-size:.92rem;color:#333}
 
 /* --- Contact / CTA --- */
-.fth-contact {
-  background: #004165;
-  color: #fff;
-  padding: 32px;
-  text-align: center;
-  border-radius: 0 0 4px 4px;
-}
-.fth-contact h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin: 0 0 10px 0;
-}
-.fth-contact p {
-  font-size: 0.95rem;
-  margin: 0 0 16px 0;
-}
-.fth-contact a {
-  color: #F2DF74 !important;
-}
+.fth-contact{background:#004165;color:#fff;padding:36px 32px;text-align:center}
+.fth-contact h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.2rem;margin:0 0 10px}
+.fth-contact p{font-size:.95rem;margin:0 0 16px;opacity:.9}
+.fth-contact a.fth-btn{color:#fff!important}
+
+/* --- Social --- */
+.fth-social{background:#004165;padding:0 32px 28px;text-align:center}
+.fth-social-label{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#A9B2B1;margin-bottom:10px}
+.fth-social-links a{display:inline-flex;align-items:center;gap:6px;color:#F2DF74!important;text-decoration:none!important;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.85rem;margin:0 10px;border:1px solid rgba(242,223,116,.4);padding:6px 14px;border-radius:20px}
 
 /* --- Disclaimer --- */
-.fth-disclaimer {
-  padding: 14px 24px;
-  font-size: 0.72rem;
-  color: #777;
-  text-align: center;
-  border-top: 1px solid #ddd;
-  background: #fafafa;
-  line-height: 1.5;
+.fth-disclaimer{padding:14px 24px;font-size:.72rem;color:#777;text-align:center;border-top:1px solid #ddd;background:#fafafa;line-height:1.5}
+
+/* --- Mobile --- */
+@media(max-width:540px){
+  .fth-hero{padding:32px 16px}
+  .fth-hero h1{font-size:1.3rem}
+  .fth-intro,.fth-meeting,.fth-why,.fth-contact{padding:28px 16px}
+  .fth-social{padding:0 16px 22px}
+  .fth-card{flex:1 1 100%;max-width:100%}
+  .fth-benefit{flex:1 1 100%;max-width:100%}
+  .fth-social-links{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .fth-social-links a{margin:0;width:180px;justify-content:center}
+  .fth-btn{display:block;width:fit-content;margin:0 auto}
 }
 </style>
 
@@ -211,15 +131,22 @@
 
   <!-- HERO -->
   <div class="fth-hero">
-    <img src="{{LOGO_URL}}" alt="Toastmasters International Logo">
-    <h1>{{CLUB_NAME}}</h1>
-    <p class="fth-tagline">{{TAGLINE}}</p>
+    <img src="https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/logos/ToastmastersLogo/ToastmastersLogoColor.png"
+         alt="Toastmasters International Logo">
+    <h1>{{CLUB_FULL_NAME}}</h1>
+    <p class="fth-tagline">"{{TAGLINE}}"</p>
     <a href="mailto:{{CONTACT_EMAIL}}" class="fth-btn">Visit Us as a Guest</a>
+  </div>
+
+  <!-- HEADER PHOTO -->
+  <div class="fth-photo-header">
+    <img src="{{HEADER_PHOTO_URL}}"
+         alt="{{CLUB_NAME}} Toastmasters members at a meeting">
   </div>
 
   <!-- INTRO -->
   <div class="fth-intro">
-    <h2>Welcome to {{CLUB_NAME}}</h2>
+    <h2>Welcome to {{CLUB_NAME}}!</h2>
     <p>{{INTRO}}</p>
   </div>
 
@@ -235,30 +162,36 @@
         <div class="fth-card-label">Time</div>
         <div class="fth-card-value">{{MEETING_TIME}}</div>
       </div>
-      <div class="fth-card">
-        <div class="fth-card-label">Where</div>
-        <div class="fth-card-value">{{MEETING_LOCATION}}</div>
-      </div>
+      {{MEETING_CARDS}}
     </div>
+  </div>
+
+  <!-- MID PHOTO -->
+  <div class="fth-photo-mid">
+    <img src="{{MID_PHOTO_URL}}"
+         alt="{{CLUB_NAME}} club members together">
+    <div class="fth-photo-mid-caption">Our club family — come join us!</div>
   </div>
 
   <!-- WHY JOIN -->
   <div class="fth-why">
-    <h2>Why Join {{CLUB_NAME}}?</h2>
+    <h2>Why Join {{CLUB_NAME}} Toastmasters?</h2>
     <div class="fth-benefits">
-      <div class="fth-benefit">Build public speaking confidence in a supportive environment</div>
-      <div class="fth-benefit">Develop leadership skills through structured Pathways programs</div>
-      <div class="fth-benefit">Grow your professional and personal network</div>
-      <div class="fth-benefit">Progress at your own pace -- guests always welcome!</div>
+      <div class="fth-benefit">Build public speaking confidence in a supportive, judgment-free environment</div>
+      <div class="fth-benefit">Develop leadership skills through Toastmasters' structured Pathways program</div>
+      <div class="fth-benefit">{{LOCATION_BENEFIT}}</div>
+      <div class="fth-benefit">Grow your professional network and make lasting connections</div>
     </div>
   </div>
 
   <!-- CONTACT -->
   <div class="fth-contact">
     <h2>Ready to Find Your Voice?</h2>
-    <p>Guests are always welcome. Come experience a meeting for free!</p>
+    <p>Guests are always welcome — attend your first meeting for free!<br>{{CONTACT_CTA_LINE}}</p>
     <a href="mailto:{{CONTACT_EMAIL}}" class="fth-btn">Contact Us</a>
   </div>
+
+  {{SOCIAL_SECTION}}
 
   <!-- REQUIRED DISCLAIMER -->
   <div class="fth-disclaimer">

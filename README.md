@@ -20,6 +20,8 @@ Preview SVGs for each theme are in the [`assets/`](assets/) folder.
 
 **[`output/fth-homepage-builder.html`](output/fth-homepage-builder.html)** is a standalone web app — no Claude account needed.
 
+**[Try the live demo →](https://4039.toastmastersclubs.org/test1.html)**
+
 1. Open the file in any browser (or copy its source code into any `.html` file on your computer)
 2. Fill in your club's details using the form UI (name, meeting time, location, contact, etc.)
 3. Choose a theme and click **Generate**

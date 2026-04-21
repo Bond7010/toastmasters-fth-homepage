@@ -51,19 +51,19 @@ Show the previews using this exact markdown (the images are hosted on GitHub and
 
 **A — Classic** · White background · Loyal Blue + True Maroon · Clean & professional
 
-![Classic preview](https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/previews/preview-classic.svg)
+![Classic preview](assets/preview-classic.svg)
 
 ---
 
 **B — Accent** · Dark `#0d1117` · Frosted glass cards · Gold highlights · Fade-up animations
 
-![Accent preview](https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/previews/preview-accent.svg)
+![Accent preview](assets/preview-accent.svg)
 
 ---
 
 **C — Obsidian** · Deep black `#080808` · Grid texture hero · Gradient borders · Shimmer CTA
 
-![Obsidian preview](https://raw.githubusercontent.com/Bond7010/tm-brand-kit-assets/main/assets/previews/preview-obsidian.svg)
+![Obsidian preview](assets/preview-obsidian.svg)
 
 ---
 
